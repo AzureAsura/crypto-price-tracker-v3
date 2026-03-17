@@ -1,32 +1,87 @@
-import React from 'react'
+'use client'
 import { TrendingUp, TrendingDown, Clock, ChevronRight } from 'lucide-react'
 import ContentTable from './content/ContentTable';
+import { indicesData, discussions, exchanges } from '@/constants'
 import DemoChart from './content/DemoChart';
+import Link from 'next/link';
+import clsx from 'clsx';
 
-const Content = () => {
-  const exchanges = [
-    { pair: "EUR / USD", rate: "1.0842", change: "+0.12%", isUp: true, img: "https://assets.coingecko.com/markets/images/52/large/binance.jpg?1706864274" },
-    { pair: "GBP / USD", rate: "1.2631", change: "-0.05%", isUp: false, img: "https://assets.coingecko.com/markets/images/23/large/Coinbase_Coin_Primary.png?1706864258" },
-    { pair: "USD / JPY", rate: "150.42", change: "+0.24%", isUp: true, img: "https://assets.coingecko.com/markets/images/698/large/bybit_spot.png?1706864649" },
-    { pair: "BTC / USD", rate: "64,231", change: "+1.42%", isUp: true, img: "https://assets.coingecko.com/markets/images/96/large/WeChat_Image_20220117220452.png?1706864283" },
-  ];
 
-  const discussions = [
-    { user: "Alex_Trader", msg: "Bullish on $BTC for the next 4 hours. Resistance looks weak.", time: "2m ago", avatar: "https://i.pravatar.cc/150?u=1" },
-    { user: "Sarah.K", msg: "EUR/USD reacting strongly to the news. Watch the 1.0850 level closely.", time: "5m ago", avatar: "https://i.pravatar.cc/150?u=2" },
-    { user: "WhaleHunter", msg: "Massive buy orders coming in for $ETH. Something is brewing.", time: "12m ago", avatar: "https://i.pravatar.cc/150?u=3" },
-    { user: "WhaleHunter", msg: "Massive buy orders coming in for $ETH. Something is brewing.", time: "12m ago", avatar: "https://i.pravatar.cc/150?u=3" },
-  ];
+const Content = ({ data }: any) => {
+
+  console.log(data)
 
 
   return (
     <div className="bg-black border-t border-white/10 md:rounded-t-[50px] min-h-screen text-white py-16">
-      <div className="w-[95vw] mx-auto">
+      <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
 
-          <div className="lg:col-span-4">
-            <DemoChart/>
+          <div className="lg:col-span-4 flex flex-col gap-4">
+
+
+            <div className="bg-black p-5 rounded-xl border border-gray-600 shadow-sm">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-600 mb-6">
+                <h2 className="text-xl font-bold text-white tracking-tight">
+                  Market Cap
+                </h2>
+              </div>
+
+              <DemoChart data={data.sparkline_in_7d.price} />
+
+              <div className="flex justify-between items-end mt-2 px-1">
+                <div className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">
+                  Performance 7D
+                </div>
+
+                <div className={clsx(
+                  "text-xs font-bold",
+                  data.price_change_percentage_7d_in_currency >= 0 ? "text-green-500" : "text-red-500"
+                )}>
+                  {data.price_change_percentage_7d_in_currency >= 0 ? '+' : ''}
+                  {data.price_change_percentage_7d_in_currency?.toFixed(2)}%
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-black p-5 rounded-xl border border-gray-600 shadow-sm flex-grow flex flex-col">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-600 mb-4">
+                <h2 className="text-xl font-bold text-white tracking-tight">
+                  Trending Coins
+                </h2>
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              </div>
+
+              <div className="space-y-2 flex-grow">
+                {indicesData.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex justify-between items-center group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-all"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-1 h-5 rounded-full ${item.isDown ? 'bg-red-500' : 'bg-green-500'}`} />
+                      <div>
+                        <div className="text-white font-bold text-sm">{item.name}</div>
+                        <div className="text-[10px] text-gray-500 uppercase">{item.desc}</div>
+                      </div>
+                    </div>
+
+                    <div className="text-right">
+                      <div className="text-white text-sm font-bold">{item.price}</div>
+                      <div className={`text-[10px] font-bold ${item.isDown ? 'text-red-500' : 'text-green-500'}`}>
+                        {item.isDown ? '▼' : '▲'} {item.percent}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <button className="w-full mt-6 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
+                View All Trending
+              </button>
+            </div>
+
           </div>
 
           <div className="lg:col-span-8">
@@ -34,9 +89,9 @@ const Content = () => {
 
               <div className="p-4 flex justify-between items-center border-b border-gray-600">
                 <h3 className="text-white font-bold text-sm uppercase tracking-wider">Market Overview</h3>
-                  <button className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
+                <button className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
                   SEE ALL COINS <ChevronRight size={15} />
-                  </button>
+                </button>
               </div>
 
               <ContentTable />
@@ -45,7 +100,7 @@ const Content = () => {
 
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 mt-4 items-stretch'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 mt-4 items-stretch'>
           <div className="lg:col-span-7">
             <div className="p-6 rounded-2xl border border-gray-600 h-full flex flex-col justify-between">
               <div>

@@ -16,7 +16,7 @@ const News = () => {
 
     return (
         <section className="bg-black pb-20 font-sans"> 
-            <div className="w-[95vw] mx-auto">
+            <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
                 <div className="flex items-center gap-1 mb-10 group cursor-pointer w-fit">
                     <h2 className="text-2xl font-black text-white tracking-tighter uppercase">Top stories</h2>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Search, Globe, LayoutGrid } from 'lucide-react'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 const Navbar = () => {
 
@@ -20,7 +21,7 @@ const Navbar = () => {
 
   return (
     <nav className={clsx("fixed top-0 left-0 w-full z-50 transition-all", hasScroll && "bg-black/80 backdrop-blur-md border-b border-gray-600")}>
-      <div className="w-[95vw] mx-auto rounded-xl py-4 flex items-center shadow-2xl">
+      <div className="px-4 md:px-0 md:w-[95vw] mx-auto rounded-xl py-4 flex items-center shadow-2xl">
 
         <div className="flex items-center justify-between w-full">
 
@@ -29,14 +30,16 @@ const Navbar = () => {
               <LayoutGrid size={20} fill="white" className="text-white" />
             </div>
 
-            <div className="flex flex-col justify-between leading-none">
+
+
+            <Link href={'/'} className="flex flex-col justify-between leading-none">
               <span className="text-[15px] md:text-[18px] font-black tracking-tighter text-white uppercase">
                 Nirmala
               </span>
               <span className="text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-blue-600 uppercase">
                 Finance
               </span>
-            </div>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-6">

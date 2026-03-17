@@ -1,98 +1,56 @@
 'use client'
+import React, { useMemo } from 'react'
+import { AreaChart, Area, YAxis } from 'recharts'
 
-import React, { useEffect, useRef } from 'react'
-import {
-    createChart,
-    LineSeries,
-    ColorType,
-    UTCTimestamp,
-    AreaSeries
-} from 'lightweight-charts'
-import { indicesData } from '@/constants'
+const DemoChart = ({ data }: { data: number[] }) => {
+    const formattedData = useMemo(() => {
+        if (!Array.isArray(data)) return []
+        
+        return data
+            .filter((_, i) => i % 2 === 0)
+            .map((price) => ({
+                value: price 
+            }))
+    }, [data])
 
-const DemoChart = () => {
-    const chartRef = useRef<HTMLDivElement | null>(null)
+    const isUp = useMemo(() => {
+        if (!data || data.length < 2) return false
+        return data[data.length - 1] > data[0]
+    }, [data])
 
-    useEffect(() => {
-        if (!chartRef.current) return
+    const chartColor = isUp ? '#22c55e' : '#ef4444'
 
-        const chart = createChart(chartRef.current, {
-            height: 300,
-            layout: {
-                background: { type: ColorType.Solid, color: '#0b0f14' },
-                textColor: '#000',
-            },
-            grid: {
-                vertLines: { visible: false },
-                horzLines: { visible: false },
-            },
-            rightPriceScale: { visible: false },
-            timeScale: { visible: false },
-        })
-
-        let base = 100
-        const data: { time: UTCTimestamp; value: number }[] = []
-        const start = Math.floor(Date.now() / 1000) - 3600 * 24
-
-        for (let i = 0; i < 60; i++) {
-            base += (Math.random() - 0.5) * 3
-
-            data.push({
-                time: (start + i * 900) as UTCTimestamp,
-                value: parseFloat(base.toFixed(2)),
-            })
-        }
-
-        const isUp = data[data.length - 1].value > data[0].value
-        const color = isUp ? '#16c784' : '#ea3943'
-
-        const line = chart.addSeries(AreaSeries, {
-            lineColor: color,
-            topColor: color + '44', 
-            bottomColor: 'transparent',
-            lineWidth: 2,
-            lastValueVisible: false,
-            priceLineVisible: false,
-        });
-
-        line.setData(data)
-
-        chart.timeScale().fitContent()
-
-        return () => chart.remove()
-    }, [])
+    if (formattedData.length === 0) return <div className="h-[140px] w-full bg-white/5 animate-pulse rounded-xl" />
 
     return (
-        <div className="bg-black p-5 rounded-xl border border-gray-600 shadow-sm h-full flex flex-col">
-            <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
-                <h2 className="text-xl font-bold text-white tracking-tight">Market Exchange</h2>
-            </div>
 
-            {/* <div ref={chartRef} className="mb-6" /> */}
-
-            <div className="space-y-4 flex-grow">
-                {indicesData.map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-all">
-                        <div className="flex items-center gap-3">
-                            <div className={`w-1 h-5 rounded-full ${item.isDown ? 'bg-red-500' : 'bg-green-500'}`} />
-                            <div>
-                                <div className="text-white font-bold text-sm">{item.name}</div>
-                                <div className="text-[10px] text-gray-500">{item.desc}</div>
-                            </div>
-                        </div>
-                        <div className="text-right">
-                            <div className="text-white text-sm font-bold">{item.price}</div>
-                            <div className={`text-[10px] ${item.isDown ? 'text-red-500' : 'text-green-500'}`}>
-                                {item.change} {item.percent}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
-                View All Trending
-            </button>
+        <div className="w-full h-[140px] mb-6 flex justify-center items-center">
+            <AreaChart 
+                width={450} 
+                height={200} 
+                data={formattedData}
+                margin={{ top: 5, right: 0, left: 0, bottom: 0 }}
+            >
+                <defs>
+                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor={chartColor} stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor={chartColor} stopOpacity={0}/>
+                    </linearGradient>
+                </defs>
+                
+                <YAxis hide domain={['dataMin', 'dataMax']} />
+                
+                <Area
+                    type="basis" 
+                    dataKey="value"
+                    stroke={chartColor}
+                    fillOpacity={1}
+                    fill="url(#colorValue)"
+                    strokeWidth={2.5}
+                    dot={false}
+                    isAnimationActive={false}
+                />
+            </AreaChart>
         </div>
     )
 }
