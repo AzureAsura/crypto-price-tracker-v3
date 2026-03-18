@@ -18,13 +18,7 @@ const ContentTable = () => {
           <TableHeader className="bg-[#0a0a0a]">
 
             <TableRow className="hover:bg-transparent border-none">
-              {/* <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                #
-              </TableHead>
-              <TableHead className="sticky left-[40px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                Asset Name
-              </TableHead> */}
-
+          
               <TableHead className="sticky left-0 z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                 Asset Name
               </TableHead>
@@ -48,20 +42,7 @@ const ContentTable = () => {
             {cryptoData.map((coin, index) => (
               <TableRow key={coin.id} className="group hover:bg-[#141414] transition-colors">
 
-                {/* <TableCell className="sticky left-0 z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
-                  <span className='font-bold text-white text-md'>{index + 1}</span>
-                </TableCell> */}
-
-
-                {/* <TableCell className="sticky left-[40px] z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <img src={coin.logo} alt="" className="w-7 h-7 object-contain" />
-                    <div className="flex flex-col">
-                      <span className="font-bold text-white text-md whitespace-nowrap">{coin.name}</span>
-                      <span className="text-[10px] text-white font-semibold uppercase">{coin.symbol}</span>
-                    </div>
-                  </div>
-                </TableCell> */}
+    
 
                 <TableCell className="sticky left-0 z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
 

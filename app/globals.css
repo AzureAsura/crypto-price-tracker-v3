@@ -17,9 +17,7 @@ body {
     @apply flex items-center justify-between;
   }
 
-  .container {
-    @apply w-[95vw] mx-auto;
-  }
+
 }
 
 @theme inline {

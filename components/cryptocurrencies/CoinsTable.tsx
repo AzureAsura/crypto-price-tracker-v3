@@ -1,4 +1,4 @@
-'use client'
+
 // import {
 //     Table,
 //     TableBody,
@@ -140,22 +140,22 @@ import { LineChart, Line, YAxis } from 'recharts'
 const MiniChart = ({ data }: { data: number[] }) => {
 
     const chartData = data?.map(p => ({ p })) || []
-    
+
     const firstPrice = data?.[0] || 0
     const lastPrice = data?.[data.length - 1] || 0
     const isActuallyDown = lastPrice < firstPrice
 
     return (
         <LineChart width={150} height={45} data={chartData}>
-            
+
             <YAxis hide domain={['dataMin', 'dataMax']} />
             <Line
                 type="monotone"
                 dataKey="p"
-                stroke={isActuallyDown ? '#ef4444' : '#22c55e'} 
+                stroke={isActuallyDown ? '#ef4444' : '#22c55e'}
                 strokeWidth={1.5}
                 dot={false}
-                isAnimationActive={false}
+                isAnimationActive={true}
             />
         </LineChart>
     )
@@ -164,16 +164,16 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
     const router = useRouter()
 
     return (
-        <div className="pt-20 bg-[#0a0a0a] overflow-hidden">
+        <div className="bg-black overflow-hidden">
             <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto ">
-                <Table className="min-w-[500px] w-full border-separate border-spacing-0 ">
+                <Table className="min-w-[500px] border-t border-gray-600 w-full border-separate border-spacing-0 ">
                     <TableHeader className="bg-[#0a0a0a]">
 
                         <TableRow className="hover:bg-transparent border-none">
                             <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                 #
                             </TableHead>
-                            <TableHead className="sticky left-[40px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                            <TableHead className="sticky left-[43px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                 Asset Name
                             </TableHead>
                             <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
@@ -210,17 +210,35 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                     onClick={() => router.push(`/cryptocurrencies/${coin.id}`)}
                                     className="group hover:bg-[#141414] transition-colors cursor-pointer">
 
-                                    <TableCell className="sticky left-0 z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
-                                        <span className='font-bold text-white text-md'>{index + 1}</span>
+                                    <TableCell className="sticky left-0 z-10 bg-black py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
+                                        <span className='font-bold text-white text-md'>{coin.market_cap_rank}</span>
                                     </TableCell>
 
 
-                                    <TableCell className="sticky left-[40px] z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
+                                    {/* <TableCell className="sticky left-[40px] z-10  py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
                                         <div className="flex items-center gap-3">
                                             <img src={coin.image} alt="" className="w-7 h-7 object-contain" />
                                             <div className="flex flex-col">
                                                 <span className="font-bold text-white text-md whitespace-nowrap">{coin.name}</span>
                                                 <span className="text-[10px] text-white font-semibold uppercase">{coin.symbol}</span>
+                                            </div>
+                                        </div>
+                                    </TableCell> */}
+
+                                    <TableCell className="sticky left-[43px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
+                                        <div className="flex items-center gap-2 md:gap-3 min-w-0">
+                                            <img
+                                                src={coin.image}
+                                                alt=""
+                                                className="w-6 h-6 md:w-7 md:h-7 object-contain flex-shrink-0"
+                                            />
+                                            <div className="flex flex-col min-w-0 overflow-hidden">
+                                                <span className="font-bold text-white text-sm md:text-md leading-tight break-words line-clamp-2">
+                                                    {coin.name}
+                                                </span>
+                                                <span className="text-[10px] text-zinc-500 font-semibold uppercase tracking-wider">
+                                                    {coin.symbol}
+                                                </span>
                                             </div>
                                         </div>
                                     </TableCell>
@@ -258,8 +276,8 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
 
                                     <TableCell className="text-right border-b border-white/10 pr-6">
                                         <div className="flex justify-end">
-                                            <MiniChart 
-                                                data={coin.sparkline_in_7d.price} 
+                                            <MiniChart
+                                                data={coin.sparkline_in_7d.price}
                                             />
                                         </div>
                                     </TableCell>

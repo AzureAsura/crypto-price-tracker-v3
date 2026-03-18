@@ -24,7 +24,7 @@ const DemoChart = ({ data }: { data: number[] }) => {
 
     return (
 
-        <div className="w-full h-[140px] mb-6 flex justify-center items-center">
+        <div className="w-full h-[140px] my-10 flex justify-center items-center">
             <AreaChart 
                 width={450} 
                 height={200} 
@@ -48,7 +48,7 @@ const DemoChart = ({ data }: { data: number[] }) => {
                     fill="url(#colorValue)"
                     strokeWidth={2.5}
                     dot={false}
-                    isAnimationActive={false}
+                    isAnimationActive={true}
                 />
             </AreaChart>
         </div>

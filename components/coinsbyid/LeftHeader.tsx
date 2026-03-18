@@ -34,7 +34,7 @@ const LeftHeader = () => {
 
     const isPositive = coin.price_change_percentage_24h > 0
     return (
-        <div className="border border-white/10 rounded-xl p-4">
+        <div className="border border-gray-600 rounded-xl p-4">
 
             <div className="flex flex-col items-start gap-6 w-full">
 
@@ -51,7 +51,7 @@ const LeftHeader = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 w-full md:hidden">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 w-full ">
 
                     <div className="shrink-0">
                         <div className="flex items-end gap-4">
@@ -87,44 +87,6 @@ const LeftHeader = () => {
 
                 </div>
 
-
-
-                <div className="hidden md:flex items-center justify-between gap-6 w-full ">
-
-                    <div className="shrink-0">
-                        <div className="flex items-end gap-4">
-                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
-                                {coin.current_price.toLocaleString()}
-                                <span className="text-sm text-zinc-400 ml-1"> USD</span>
-                            </h2>
-
-                            <div className={`text-sm font-semibold mb-1 ${isPositive ? 'text-green-400' : 'text-red-400'
-                                }`}>
-                                {isPositive ? '+' : ''}
-                                {coin.price_change_24h.toFixed(2)} ({coin.price_change_percentage_24h.toFixed(2)}%)
-                            </div>
-                        </div>
-
-                        <p className="text-[11px] text-zinc-500">
-                            Market cap: {coin.market_cap.toLocaleString()}
-                        </p>
-                    </div>
-
-                    {/* STATS */}
-                    <div className="flex flex-wrap gap-6 text-sm text-zinc-400 lg:pl-8 lg:border-l lg:border-white/10">
-                        {stats.map((item, i) => (
-                            <div className="flex flex-col leading-tight" key={i}>
-                                <span className="text-[10px] tracking-widest text-zinc-500 uppercase">
-                                    {item.label}
-                                </span>
-                                <span className="text-white font-semibold text-sm">
-                                    {item.value}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-
-                </div>
 
             </div>
         </div>

@@ -18,22 +18,6 @@ export const getCoins = async () => {
 }
 
 
-// export const getBtcMarketCap = async () => {
-//     const res = await fetch(
-//         'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1',
-//         {
-//             headers: {
-//                 "x-cg-demo-api-key": process.env.COINGECKO_API as string,
-//                 "accept": "application/json"
-//             }
-//         }
-//     )
-
-//     const data = await res.json()
-//     const marketCapData = data.market_caps
-//     return marketCapData
-// }
-
 export const getBtcMarketCap = async () => {
     const res = await fetch(
         'https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&ids=bitcoin&sparkline=true&price_change_percentage=1h,24h,7d',
@@ -52,7 +36,7 @@ export const getBtcMarketCap = async () => {
 }
 export const getAllCoinsData = async () => {
     const res = await fetch(
-        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h,24h,7d',
+        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d',
         {
             headers: {
                 "x-cg-demo-api-key": process.env.COINGECKO_API as string,
@@ -63,5 +47,25 @@ export const getAllCoinsData = async () => {
     )
 
     if (!res.ok) return []
+    return res.json()
+}
+
+export const getAllExchangesData = async () => {
+    const res = await fetch(
+        'https://api.coingecko.com/api/v3/exchanges?per_page=50&page=1',
+        {
+            headers: {
+                "x-cg-demo-api-key": process.env.COINGECKO_API as string,
+                "accept": "application/json"
+            },
+            next: { revalidate: 60 }
+        }
+    )
+
+    if (!res.ok) {
+        console.error("Failed to fetch exchanges");
+        return []
+    }
+    
     return res.json()
 }

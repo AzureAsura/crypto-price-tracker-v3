@@ -1,14 +1,19 @@
 import CoinsTable from '@/components/cryptocurrencies/CoinsTable'
-import { getAllCoinsData } from '@/lib/data' 
+import Header from '@/components/cryptocurrencies/Header'
+import { getAllCoinsData } from '@/lib/data'
+import { Info, TrendingUp } from 'lucide-react'
 
 const page = async () => {
   const coins = await getAllCoinsData()
 
-  console.log(coins)
-
   return (
     <main className="bg-[#0a0a0a] min-h-screen">
-      <CoinsTable initialData={coins}/>
+      <div className='px-4 md:px-0 md:w-[95vw] mx-auto pt-24 pb-10'>
+        <Header/>
+      </div>
+
+      <CoinsTable initialData={coins} />
+
     </main>
   )
 }

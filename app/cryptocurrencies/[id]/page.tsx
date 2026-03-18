@@ -6,7 +6,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
  
 
     return (
-        <div className='py-20'>
+        <div className=''>
             <CoinsData/>
 
         </div>

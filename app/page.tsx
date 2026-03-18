@@ -9,7 +9,6 @@ const page = async () => {
 
   const data = await getBtcMarketCap()
 
-  // console.log(chartData)
 
 
   return (

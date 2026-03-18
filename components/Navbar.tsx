@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react'
 import { Search, Globe, LayoutGrid } from 'lucide-react'
 import clsx from 'clsx'
 import Link from 'next/link'
+import Image from 'next/image'
+
+const navLink = [
+  { name: 'Cryptocurrencies', href: '/cryptocurrencies'},
+  { name: 'Exchanges', href: '/exchanges'},
+  { name: 'NFT', href: '/nft'},
+  { name: 'News' , href: '/news'}
+]
 
 const Navbar = () => {
 
@@ -20,34 +28,37 @@ const Navbar = () => {
 
 
   return (
-    <nav className={clsx("fixed top-0 left-0 w-full z-50 transition-all", hasScroll && "bg-black/80 backdrop-blur-md border-b border-gray-600")}>
+    <nav
+      className={clsx(
+        "fixed top-0 left-0 w-full z-50 transition-all",
+        hasScroll &&
+        "bg-black/70 backdrop-blur-md before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/20 before:to-transparent before:pointer-events-none"
+      )}
+    >
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto rounded-xl py-4 flex items-center shadow-2xl">
 
         <div className="flex items-center justify-between w-full">
 
-          <div className="flex items-center gap-2 cursor-pointer group shrink-0">
-            <div className="w-8 h-8 md:w-9 md:h-9 bg-blue-600 rounded-md flex items-center justify-center group-hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20">
-              <LayoutGrid size={20} fill="white" className="text-white" />
-            </div>
+          <Link href={'/'} className="flex items-center gap-1.5 cursor-pointer group shrink-0">
+            <Image src={'/logo.svg'} alt='logo' height={35} width={35} priority />
 
-
-
-            <Link href={'/'} className="flex flex-col justify-between leading-none">
-              <span className="text-[15px] md:text-[18px] font-black tracking-tighter text-white uppercase">
+            <div className="flex flex-col justify-between leading-none">
+              <span className="text-[18px] font-black tracking-tighter text-white uppercase">
                 Nirmala
               </span>
-              <span className="text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-blue-600 uppercase">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-blue-600 uppercase">
                 Finance
               </span>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-center gap-5 text-[14px] font-semibold text-gray-300">
-              <a href="/cryptocurrencies" className="hover:text-white transition-colors">Cryptocurrencies</a>
-              <a href="#" className="hover:text-white transition-colors">Exchanges</a>
-              <a href="#" className="hover:text-white transition-colors">NFT</a>
-              <a href="#" className="hover:text-white transition-colors">News</a>
+              {navLink.map((item, i) => (
+                <Link key={i} href={item.href} className='hover:text-white transition-colors'>
+                  {item.name}
+                </Link>
+              ))}
             </div>
 
             <div className="hidden lg:flex items-center bg-[#2a2e39] px-4 py-2 rounded-full w-64 text-gray-400 border border-transparent hover:border-gray-500 transition-all cursor-text group">
