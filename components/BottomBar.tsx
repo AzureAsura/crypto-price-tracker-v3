@@ -24,7 +24,7 @@ const BottomBar = () => {
                             key={link.label}
                             className={clsx(
                                 'relative flex flex-col items-center gap-1.5 rounded-2xl p-2 flex-1 sm:flex-1 sm:px-2 sm:py-2.5 transition-all duration-300 ease-out',
-                                isActive ? 'bg-blue-600' : 'text-zinc-500 hover:text-white'
+                                isActive ? 'bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950' : 'text-zinc-500 hover:text-white'
                             )}
                         >
                             <div className={clsx(

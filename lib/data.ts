@@ -26,13 +26,13 @@ export const getBtcMarketCap = async () => {
                 "x-cg-demo-api-key": process.env.COINGECKO_API as string,
                 "accept": "application/json"
             },
-            next: { revalidate: 60 } 
+            next: { revalidate: 60 }
         }
     )
 
     const data = await res.json()
-    
-    return data[0] 
+
+    return data[0]
 }
 export const getAllCoinsData = async () => {
     const res = await fetch(
@@ -66,6 +66,30 @@ export const getAllExchangesData = async () => {
         console.error("Failed to fetch exchanges");
         return []
     }
-    
+
     return res.json()
 }
+
+export const getAssetPlatforms = async () => {
+    const res = await fetch('https://api.coingecko.com/api/v3/asset_platforms', {
+        headers: {
+            "x-cg-demo-api-key": process.env.COINGECKO_API as string,
+            "accept": "application/json"
+        },
+    });
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+
+    const filtered = data.filter((platform: any) => {
+        return (
+            platform.chain_identifier !== null &&
+            platform.chain_identifier !== '' &&
+            platform.shortname !== null &&
+            platform.shortname !== ''
+        );
+    });
+
+    return filtered;
+};

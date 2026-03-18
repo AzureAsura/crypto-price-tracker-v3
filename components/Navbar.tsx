@@ -9,7 +9,7 @@ import Image from 'next/image'
 const navLink = [
   { name: 'Cryptocurrencies', href: '/cryptocurrencies'},
   { name: 'Exchanges', href: '/exchanges'},
-  { name: 'NFT', href: '/nft'},
+  { name: 'Platform', href: '/platform'},
   { name: 'News' , href: '/news'}
 ]
 

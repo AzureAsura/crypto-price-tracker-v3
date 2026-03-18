@@ -140,3 +140,15 @@ export const bottomBarLinks = [
         ),
     },
 ];
+
+ export const newsItems = [
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", time: "1 hour ago", source: "TradingView", title: "South Korea's Kospi Sheds 12% on Iran Conflict, Japan's Nikkei Also Hit Hard" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/2047.png", time: "1 hour ago", source: "TradingView", title: "Amazon Under Pressure as Data Centers Go Dark After Middle East Drone Attack" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", time: "21 hours ago", source: "TradingView", title: "BTC/USD: Bitcoin Prices Whipsaw as Crypto Traders Seek Direction amid War Tremors" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png", time: "yesterday", source: "TradingView", title: "IXIC: Nasdaq Futures Dive as US-Iran Conflict Heats Up, Oil Nears $75" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png", time: "yesterday", source: "TradingView", title: "EUR/USD: Euro Tumbles as Traders Flock to Greenback. Support Levels Ahead." },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", time: "2 days ago", source: "TradingView", title: "XAU/USD: Gold Soars Above $5,400 as Iran Tensions Trigger Flight to Safe Havens" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/4128.png", time: "2 days ago", source: "TradingView", title: "US Crude Oil Hits 9-Month High as Markets Brace for Iran Supply Crisis" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", time: "2 days ago", source: "TradingView", title: "DJI: Dow Futures Dive 500 Points amid US Attack on Iran; Oil Prices Surge" },
+        { logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/1.png", time: "4 days ago", source: "TradingView", title: "CRWV: CoreWeave Stock Falls 9% on Timid Guidance, Big Debt Pile" },
+    ];

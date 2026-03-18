@@ -1,94 +1,104 @@
 'use client'
 import { useRouter } from "next/navigation"
 import { ShieldCheck, ArrowRight } from 'lucide-react'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 
 const ExchangesTable = ({ initialData }: { initialData: any[] }) => {
     const router = useRouter()
 
     return (
-        <div className="w-full border-t border-gray-600 bg-black">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-5">
-                {initialData?.map((exchange, index) => {
-                    const isHighTrust = exchange.trust_score >= 9;
 
-                    return (
-                        <div
-                            key={exchange.id}
-                            onClick={() => router.push(`/exchanges/${exchange.id}`)}
-                            className="group relative p-6 rounded-2xl cursor-pointer  border border-gray-600 hover:border-gray-500 hover:bg-[#111] transition-all duration-300"
-                        >
-                            <div className="flex flex-col gap-5 h-full">
+            <div className="bg-black overflow-hidden">
+                <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto ">
+                    <Table className="min-w-[500px] border-t border-gray-600 w-full border-separate border-spacing-0 ">
+                        <TableHeader className="bg-[#0a0a0a]">
 
-                                <div className="flex items-center justify-between">
+                            <TableRow className="hover:bg-transparent border-none">
+                                <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    #
+                                </TableHead>
+                                <TableHead className="sticky left-[43px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    Exchange Name
+                                </TableHead>
+                                <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    Trust Score
+                                </TableHead>
+                                <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    Year Established
+                                </TableHead>
+                                <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    Country
+                                </TableHead>
+                                <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                    24H Vol
+                                </TableHead>
+                            </TableRow>
+                        </TableHeader>
 
-                                    <div className="flex items-center gap-4">
-                                        <img
-                                            src={exchange.image}
-                                            className="w-11 h-11 object-contain"
-                                        />
 
-                                        <div>
-                                            <div className="flex items-center gap-2">
-                                                <h3 className="text-lg font-semibold text-white tracking-tight">
-                                                    {exchange.name}
-                                                </h3>
-                                                {isHighTrust && (
-                                                    <ShieldCheck size={18} className="text-blue-600" />
-                                                )}
+                        <TableBody>
+                            {initialData?.map((exchange, index) => {
+
+                                return (
+                                    <TableRow
+                                        key={exchange.id}
+                                        onClick={() => router.push(`/exchanges/${exchange.id}`)}
+                                        className="group hover:bg-[#141414] transition-colors cursor-pointer"
+                                    >
+                                        <TableCell className="sticky left-0 z-10 bg-black py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
+                                            <span className='font-bold text-white text-md'>{exchange.trust_score_rank}</span>
+                                        </TableCell>
+
+                                        <TableCell className="sticky left-[43px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
+                                            <div className="flex items-center gap-2 md:gap-3 min-w-0">
+                                                <img
+                                                    src={exchange.image}
+                                                    alt={exchange.name}
+                                                    className="w-6 h-6 md:w-7 md:h-7 object-contain flex-shrink-0"
+                                                />
+                                                <div className="flex flex-col min-w-0 overflow-hidden">
+                                                    <span className="font-bold text-white text-sm md:text-md leading-tight break-words line-clamp-2">
+                                                        {exchange.name}
+                                                    </span>
+                                                </div>
                                             </div>
+                                        </TableCell>
 
-                                            <span className="text-xs text-gray-400">
-                                                Rank #{exchange.trust_score_rank} • {exchange.country || 'Global'}
-                                            </span>
-                                        </div>
-                                    </div>
+                                        <TableCell className="text-right text-white font-medium border-b border-white/10">
+                                            <div className="flex flex-col items-end">
+                                                <span className="text-green-400 font-bold">{exchange.trust_score}/10</span>
+                                            </div>
+                                        </TableCell>
 
-                                    <ArrowRight size={16} className="text-gray-500 group-hover:text-white" />
-                                </div>
+                                        <TableCell className="text-right text-white border-b font-bold border-white/10">
+                                            {exchange.year_established || 'N/A'}
+                                        </TableCell>
 
-                                {/* DESC */}
-                                <p className="text-sm text-gray-300 leading-relaxed line-clamp-2">
-                                    {exchange.description || "High liquidity crypto exchange with advanced trading tools and global market access."}
-                                </p>
+                                        <TableCell className="text-right text-white font-bold border-b border-white/10">
+                                            {exchange.country}
+                                        </TableCell>
 
-                                {/* STATS */}
-                                <div className="flex items-center justify-between pt-4 border-t border-gray-700">
+                                        <TableCell className="text-right text-white font-bold border-b border-white/10">
+                                            {exchange.trade_volume_24h_btc.toLocaleString('id-ID', { maximumFractionDigits: 2 })} BTC
+                                        </TableCell>
 
-                                    <div>
-                                        <div className="text-[11px] text-gray-500 uppercase tracking-wider">
-                                            Score
-                                        </div>
-                                        <div className="text-lg font-semibold text-white">
-                                            {exchange.trust_score}
-                                        </div>
-                                    </div>
 
-                                    <div>
-                                        <div className="text-[11px] text-gray-500 uppercase tracking-wider">
-                                            24H Vol
-                                        </div>
-                                        <div className="text-lg font-semibold text-white tabular-nums">
-                                            {exchange.trade_volume_24h_btc.toLocaleString()}
-                                        </div>
-                                    </div>
 
-                                    <div>
-                                        <div className="text-[11px] text-gray-500 uppercase tracking-wider">
-                                            Year
-                                        </div>
-                                        <div className="text-sm text-gray-300">
-                                            {exchange.year_established || '—'}
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    )
-                })}
+                                    </TableRow>
+                                )
+                            })}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
-        </div>
+
     )
 }
 
