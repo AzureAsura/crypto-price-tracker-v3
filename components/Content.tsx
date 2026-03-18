@@ -51,7 +51,6 @@ const Content = ({ data }: any) => {
                 <h2 className="text-xl font-black text-white tracking-tight uppercase">
                   Trending Coins
                 </h2>
-                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
               </div>
 
               <div className="space-y-2 flex-grow py-3">
