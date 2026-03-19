@@ -106,7 +106,7 @@ const Content = ({ data }: any) => {
               <div>
                 <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
                   <h2 className="text-xl font-black text-white tracking-tight uppercase">Top Exchanges</h2>
-                  <button className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
+                  <button className="group flex text-start items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
                     ALL EXCHANGE <ChevronRight size={15} />
                   </button>
                 </div>

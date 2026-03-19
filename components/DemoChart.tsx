@@ -3,6 +3,7 @@ import React, { useMemo } from 'react'
 import { AreaChart, Area, YAxis } from 'recharts'
 
 const DemoChart = ({ data }: { data: number[] }) => {
+    
     const formattedData = useMemo(() => {
         if (!Array.isArray(data)) return []
         
@@ -13,6 +14,7 @@ const DemoChart = ({ data }: { data: number[] }) => {
             }))
     }, [data])
 
+    
     const isUp = useMemo(() => {
         if (!data || data.length < 2) return false
         return data[data.length - 1] > data[0]

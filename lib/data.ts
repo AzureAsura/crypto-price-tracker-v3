@@ -34,6 +34,57 @@ export const getBtcMarketCap = async () => {
 
     return data[0]
 }
+
+
+
+export const getCoinById = async (id: string) => {
+    const apiKey = process.env.COINGECKO_API as string;
+    const headers = {
+        "x-cg-demo-api-key": apiKey,
+        "accept": "application/json"
+    };
+
+    try {
+        const [resMarket, resDetail, resChart] = await Promise.all([
+            fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&ids=${id}`,
+                { headers, next: { revalidate: 60 } }),
+
+            fetch(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`,
+                { headers, next: { revalidate: 60 } }),
+
+            fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=idr&days=7&interval=hourly`,
+                { headers, next: { revalidate: 60 } })
+        ]);
+
+        if (!resDetail.ok) return null;
+
+        const marketData = await resMarket.json();
+        const detailData = await resDetail.json();
+        const chartData = await resChart.json();
+
+        const market = marketData[0] || {};
+
+        return {
+            ...market,
+            id: detailData.id,
+            name: detailData.name,
+            symbol: detailData.symbol,
+            image: detailData.image?.large || market.image,
+            description: detailData.description?.en || "",
+            links: detailData.links || {},
+            categories: detailData.categories || [],
+            genesis_date: detailData.genesis_date,
+            sentiment_votes_up_percentage: detailData.sentiment_votes_up_percentage,
+
+            historical_prices: chartData.prices || []
+        };
+    } catch (error) {
+        console.error("Error fetching coin data:", error);
+        return null;
+    }
+}
+
+
 export const getAllCoinsData = async () => {
     const res = await fetch(
         'https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d',
@@ -49,6 +100,7 @@ export const getAllCoinsData = async () => {
     if (!res.ok) return []
     return res.json()
 }
+
 
 export const getAllExchangesData = async () => {
     const res = await fetch(
@@ -69,6 +121,7 @@ export const getAllExchangesData = async () => {
 
     return res.json()
 }
+
 
 export const getAssetPlatforms = async () => {
     const res = await fetch('https://api.coingecko.com/api/v3/asset_platforms', {

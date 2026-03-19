@@ -1,14 +1,16 @@
 import CoinsData from '@/components/coinsbyid/CoinsData'
-import React from 'react'
+import { getCoinById } from '@/lib/data'
 
 const Page = async ({ params }: { params: { id: string } }) => {
 
- 
+    const { id }  = await params
+
+    const data = await getCoinById(id)
+
 
     return (
         <div className=''>
-            <CoinsData/>
-
+            <CoinsData data={data}/>
         </div>
     )
 }

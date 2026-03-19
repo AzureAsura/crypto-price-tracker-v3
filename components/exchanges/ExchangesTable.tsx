@@ -24,7 +24,7 @@ const ExchangesTable = ({ initialData }: { initialData: any[] }) => {
                                 <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                     #
                                 </TableHead>
-                                <TableHead className="sticky left-[43px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                                <TableHead className="sticky left-[40px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                     Exchange Name
                                 </TableHead>
                                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
@@ -56,7 +56,7 @@ const ExchangesTable = ({ initialData }: { initialData: any[] }) => {
                                             <span className='font-bold text-white text-md'>{exchange.trust_score_rank}</span>
                                         </TableCell>
 
-                                        <TableCell className="sticky left-[43px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
+                                        <TableCell className="sticky left-[40px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
                                             <div className="flex items-center gap-2 md:gap-3 min-w-0">
                                                 <img
                                                     src={exchange.image}

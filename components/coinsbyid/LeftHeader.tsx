@@ -1,92 +1,135 @@
 import React from 'react'
 
-const LeftHeader = () => {
-    const coin = {
-        name: "Bitcoin",
-        symbol: "BTC",
-        image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
-        current_price: 70187,
-        price_change_24h: 2126.88,
-        price_change_percentage_24h: 3.12,
-        market_cap: 1381651251183,
-        total_volume: 20154184933,
-        market_cap_rank: 1,
-    }
+const LeftHeader = ({ data }: any) => {
+    if (!data) return null;
 
-    const stats = [
+    const isPositive = data.price_change_percentage_24h > 0
+
+    const mainStats = [
         {
-            label: "MKT CAP",
-            value: `$${(coin.market_cap / 1e12).toFixed(2)}T`,
+            label: "Market Cap: ",
+            value: data.market_cap.toLocaleString('id-ID'),
         },
         {
-            label: "VOL",
-            value: `$${(coin.total_volume / 1e9).toFixed(2)}B`,
+            label: "VOL 24H: ",
+            value: data.total_volume.toLocaleString('id-ID'),
         },
         {
-            label: "SUPPLY",
-            value: "19.67M",
-        },
-        {
-            label: "DOM",
-            value: "52.4%",
+            label: "SUPPLY: ",
+            value: data.circulating_supply.toLocaleString('id-ID'),
         },
     ]
 
-    const isPositive = coin.price_change_percentage_24h > 0
+    const formatCompact = (num: number) => {
+        if (num >= 1e12) return (num / 1e12).toFixed(2) + "T"
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + "B"
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + "M"
+        if (num >= 1e3) return (num / 1e3).toFixed(2) + "K"
+        return num.toFixed(2)
+    }
+
+    const priceRange = [
+        {
+            label: "24h Low",
+            value: formatCompact(data.low_24h),
+        },
+        {
+            label: "24h High",
+            value: formatCompact(data.high_24h),
+        },
+        {
+            label: "All Time High",
+            value: formatCompact(data.ath),
+        },
+    ]
+
     return (
-        <div className="border border-gray-600 rounded-xl p-4">
+        <div className="border border-gray-600 rounded-2xl p-6 bg-black shadow-2xl relative overflow-hidden">
 
-            <div className="flex flex-col items-start gap-6 w-full">
+            <div className="absolute inset-0 opacity-20 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 blur-3xl" />
+            </div>
 
-                <div className="flex items-center gap-3 shrink-0">
-                    <img src={coin.image} className="w-10 h-10 rounded-full" />
-                    <div className="leading-tight">
-                        <h1 className="text-lg font-semibold tracking-wide">
-                            {coin.name.toUpperCase()}
-                            <span className="text-zinc-500 ml-2 text-sm">{coin.symbol}</span>
-                        </h1>
-                        <p className="text-[11px] text-zinc-500">
-                            Rank #{coin.market_cap_rank}
-                        </p>
+            <div className="flex flex-col gap-4 w-full relative z-10">
+
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center gap-4 md:gap-5">
+
+                        <div className="p-1.5 bg-zinc-900 rounded-full border border-gray-700">
+                            <img src={data.image} className="w-10 h-10 md:w-12 md:h-12 rounded-full" alt={data.name} />
+                        </div>
+
+                        <div className="leading-tight">
+                            <h1 className="text-2xl md:text-3xl font-black tracking-tight flex items-center gap-2">
+                                {data.name}
+                                <span className="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-[11px] rounded font-bold border border-zinc-700">
+                                    {data.symbol.toUpperCase()}
+                                </span>
+                            </h1>
+
+                            <p className="text-xs md:text-sm font-semibold text-zinc-500 tracking-wide mt-1">
+                                Blockchain Ecosystem • Rank #{data.market_cap_rank}
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 w-full ">
+                <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-8">
 
-                    <div className="shrink-0">
-                        <div className="flex items-end gap-4">
-                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
-                                {coin.current_price.toLocaleString()}
-                                <span className="text-sm text-zinc-400 ml-1"> USD</span>
+                    <div className="space-y-3">
+                        <div className="flex items-baseline gap-3">
+                            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-none">
+                                {data.current_price.toLocaleString('id-ID')}
                             </h2>
-
-                            <div className={`text-sm font-semibold mb-1 ${isPositive ? 'text-green-400' : 'text-red-400'
-                                }`}>
-                                {isPositive ? '+' : ''}
-                                {coin.price_change_24h.toFixed(2)} ({coin.price_change_percentage_24h.toFixed(2)}%)
-                            </div>
+                            <span className="text-sm md:text-base text-zinc-500 font-semibold">IDR</span>
                         </div>
 
-                        <p className="text-[11px] text-zinc-500">
-                            Market cap: {coin.market_cap.toLocaleString()}
-                        </p>
+                        <div className="flex items-center gap-3">
+                            <div className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs md:text-sm font-bold ${isPositive
+                                ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                                : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                                }`}>
+                                {isPositive ? '▲' : '▼'}
+                                <span className="opacity-60 ml-1">
+                                    ({data.price_change_percentage_24h.toFixed(2)}%)
+                                </span>
+                            </div>
+
+                            <span className="text-[11px] text-zinc-400 font-semibold uppercase tracking-wider">
+                                Last 24 Hours
+                            </span>
+                        </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-6 text-sm text-zinc-400 lg:pl-8 lg:border-l lg:border-white/10">
-                        {stats.map((item, i) => (
-                            <div className="flex flex-col leading-tight" key={i}>
-                                <span className="text-[10px] tracking-widest text-zinc-500 uppercase">
+                    <div className="grid grid-cols-3 lg:pl-10 lg:border-l lg:border-zinc-600">
+                        {priceRange.map((item, i) => (
+                            <div className="flex flex-col gap-1" key={i}>
+                                <span className="text-[10px]  tracking-widest text-zinc-500 uppercase font-semibold">
                                     {item.label}
                                 </span>
-                                <span className="text-white font-semibold text-sm">
+                                <span className="text-base md:text-lg text-white font-bold tracking-tight">
                                     {item.value}
                                 </span>
                             </div>
                         ))}
                     </div>
-
                 </div>
 
+                <div className=" pt-4 grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3">
+                    {mainStats.map((item, i) => (
+                        <div
+                            key={i}
+                            className="flex md:flex-col items-center justify-between px-3 py-2 rounded-lg bg-white/5 border border-gray-600"
+                        >
+                            <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
+                                {item.label}
+                            </span>
+                            <span className="text-sm font-bold text-white tracking-tight">
+                                Rp {item.value}
+                            </span>
+                        </div>
+                    ))}
+                </div>
 
             </div>
         </div>
