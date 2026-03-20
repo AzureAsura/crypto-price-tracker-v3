@@ -8,7 +8,7 @@ const CoinsData = ({ data, coinId }: any) => {
   if (!data) return null;
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 md:pt-24 pb-10">
+    <div className="min-h-screen text-white pt-20 md:pt-24 pb-10">
       <div className='px-4 md:px-0 md:w-[95vw] mx-auto'>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
@@ -28,7 +28,7 @@ const CoinsData = ({ data, coinId }: any) => {
               genesis_date={data.genesis_date}
             />
 
-            <div className="p-6 rounded-2xl border border-gray-600 h-full flex flex-col justify-between">
+            <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
                 <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Global Discussion</h2>
                 <div className="space-y-6">

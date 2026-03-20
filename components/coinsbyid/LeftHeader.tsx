@@ -51,11 +51,8 @@ const LeftHeader = ({ data }: any) => {
         },
     ]
     return (
-        <div className="border border-gray-600 rounded-2xl p-6 bg-black shadow-2xl relative overflow-hidden">
+        <div className="rounded-2xl p-6 card shadow-2xl relative overflow-hidden">
 
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 blur-3xl" />
-            </div>
 
             <div className="flex flex-col gap-4 w-full relative z-10">
 

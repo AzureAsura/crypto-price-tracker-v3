@@ -31,25 +31,27 @@ const TrendingMiniChart = ({ url, isDown }: { url: string, isDown: boolean }) =>
 }
 
 const CoinsTable = ({ initialData }: { initialData: any[] }) => {
+
     const router = useRouter()
 
     return (
-        <div className="bg-black overflow-hidden">
-            <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto ">
-                <Table className="min-w-[500px] border-t border-gray-600 w-full border-separate border-spacing-0 ">
-                    <TableHeader className="bg-[#0a0a0a]">
+        <div className="overflow-hidden">
+            <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto border border-gray-600 rounded-2xl">
+                <Table className="min-w-[500px] bg-[#030f1f] w-full border-separate border-spacing-0 ">
+                    <TableHeader className="bg-[#030f1f]">
                         <TableRow className="hover:bg-transparent border-none">
-                            <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">#</TableHead>
-                            <TableHead className="sticky left-[50px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Asset Name</TableHead>
+                            <TableHead className="sticky left-0 z-30 bg-[#030f1f] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">#</TableHead>
+                            <TableHead className="sticky left-[50px] z-20 bg-[#030f1f] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Asset Name</TableHead>
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Price</TableHead>
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">24h %</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Rank</TableHead>
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Market Cap</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">Last 7 Days</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">Last 7 Days (Sparkline)</TableHead>
                         </TableRow>
                     </TableHeader>
 
                     <TableBody>
-                        {initialData?.map((coin) => {
+                        {initialData?.map((coin, index) => {
                             const p24h = coin.price_change_percentage_24h ?? 0
                             const isDown = p24h < 0
 
@@ -57,13 +59,13 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                 <TableRow
                                     key={coin.id}
                                     onClick={() => router.push(`/cryptocurrencies/${coin.id}`)}
-                                    className="group hover:bg-[#141414] transition-colors cursor-pointer">
+                                    className="group hover:bg-[#1E1E1E] transition-colors cursor-pointer">
 
-                                    <TableCell className="sticky left-0 z-10 bg-black py-4 pl-4 border-b border-white/10 w-[50px] group-hover:bg-[#141414] transition-colors">
-                                        <span className='font-bold text-white text-md'>{coin.market_cap_rank ?? '-'}</span>
+                                    <TableCell className="sticky left-0 z-10 bg-[#030f1f] py-4 pl-4 border-b border-white/10 w-[50px] group-hover:bg-[#1E1E1E] transition-colors">
+                                        <span className='font-bold text-white text-md'>{index + 1}</span>
                                     </TableCell>
 
-                                    <TableCell className="sticky left-[50px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
+                                    <TableCell className="sticky left-[50px] z-10 py-4 pl-4 bg-[#030f1f] group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
                                         <div className="flex items-center gap-2 md:gap-3 min-w-0">
                                             <img
                                                 src={coin.image}
@@ -81,19 +83,23 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                         </div>
                                     </TableCell>
 
-                                    <TableCell className="text-right text-white font-medium border-b border-white/10 group-hover:bg-[#141414] transition-colors">
+                                    <TableCell className="text-right text-white font-medium border-b border-white/10 group-hover:bg-[#1E1E1E] transition-colors">
                                         IDR {coin.current_price?.toLocaleString('id-ID')}
                                     </TableCell>
 
-                                    <TableCell className={`text-right font-bold border-b border-white/10 group-hover:bg-[#141414] transition-colors ${isDown ? 'text-red-400' : 'text-green-400'}`}>
+                                    <TableCell className={`text-right font-bold border-b border-white/10 group-hover:bg-[#1E1E1E] transition-colors ${isDown ? 'text-red-400' : 'text-green-400'}`}>
                                         {isDown ? '▼' : '▲'} {Math.abs(p24h).toFixed(2)}%
                                     </TableCell>
 
-                                    <TableCell className="text-right text-white border-b border-white/10 group-hover:bg-[#141414] transition-colors">
+                                    <TableCell className="text-right text-white font-medium border-b border-white/10 group-hover:bg-[#1E1E1E] transition-colors">
+                                        # {coin.market_cap_rank ?? '-'}
+                                    </TableCell>
+
+                                    <TableCell className="text-right text-white border-b border-white/10 group-hover:bg-[#1E1E1E] transition-colors">
                                         IDR {(coin.market_cap).toLocaleString('id-ID')}
                                     </TableCell>
 
-                                    <TableCell className="text-right border-b border-white/10 pr-6 group-hover:bg-[#141414] transition-colors">
+                                    <TableCell className="text-right border-b border-white/10 pr-6 group-hover:bg-[#1E1E1E] transition-colors">
                                         <div className="flex justify-end">
                                             <TrendingMiniChart
                                                 url={coin.sparkline_url}

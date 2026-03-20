@@ -4,16 +4,16 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      className="bg-black text-white relative z-10 overflow-hidden min-h-[50vh] flex flex-col justify-between py-10 px-6"
+      className="text-white relative z-10 overflow-hidden min-h-[50vh] flex flex-col justify-between py-10 px-6"
     >
-      <div className="absolute inset-x-0 bottom-0 h-full overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-x-0 bottom-0 h-full overflow-hidden pointer-events-none">
 
         <div className="absolute bottom-[-10%] left-[-10%] md:left-[20%] w-[80vw] md:w-[30vw] h-[80vw] md:h-[30vw] bg-blue-600/20 blur-[80px] md:blur-[100px] rounded-full animate-pulse"></div>
         <div
           className="absolute bottom-[-10%] right-[-10%] md:right-[20%] w-[80vw] md:w-[40vw] h-[80vw] md:h-[40vw] bg-blue-900/10 blur-[80px] md:blur-[120px] rounded-full animate-pulse"
           style={{ animationDelay: "1s" }}
         ></div>
-      </div>
+      </div> */}
 
       <div className="relative z-10 px-4 md:px-0 md:w-[95vw] mx-auto w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-12 text-center md:text-left pt-10">
         <div className="flex flex-col items-center md:items-start">

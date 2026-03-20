@@ -22,7 +22,7 @@ export default function ExchangeHeader() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-10">
 
-            <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-center h-full shadow-2xl transition-all hover:border-zinc-500">
+            <div className="card rounded-2xl p-6 flex flex-col justify-center h-full shadow-2xl transition-all hover:border-zinc-500">
                 <div className="space-y-4">
 
                     <div className="flex items-center gap-2 text-xs font-bold text-zinc-500 uppercase tracking-widest">
@@ -42,7 +42,7 @@ export default function ExchangeHeader() {
             </div>
 
 
-            <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-between h-full min-h-[180px] shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-500">
+            <div className="card rounded-2xl p-6 flex flex-col justify-between h-full min-h-[180px] shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-500">
 
                 <div className="flex justify-between items-start relative z-10">
 

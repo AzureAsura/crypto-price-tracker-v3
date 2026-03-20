@@ -89,11 +89,11 @@ const ChartById = ({ coinId }: { coinId: string }) => {
   }
 
   return (
-    <div className="w-full bg-black border border-gray-600 rounded-2xl p-6 shadow-2xl relative overflow-hidden group">
+    <div className="w-full card rounded-2xl p-6 shadow-2xl relative overflow-hidden group ">
 
       <div className="flex items-center justify-between gap-3 mb-8 relative z-20">
         <div className="flex items-center gap-2">
-          <div className="flex bg-zinc-900 rounded-lg border border-zinc-800">
+          <div className="flex card rounded-lg border border-zinc-800">
             {['Price', 'Market Cap'].map((m) => (
               <button
                 key={m}
@@ -108,12 +108,12 @@ const ChartById = ({ coinId }: { coinId: string }) => {
 
 
         <div className="flex items-center gap-2">
-          <div className="flex bg-zinc-900 rounded-lg border border-zinc-800">
+          <div className="flex card rounded-lg border border-zinc-800">
             {Object.keys(timeframeMap).map((tf) => (
               <button
                 key={tf}
                 onClick={() => setTimeframe(tf)}
-                className={clsx('px-2 md:px-3 py-1.5 md:py-2 text-[10px] md:text-[12px] font-semibold uppercase tracking-wide rounded-md transition-all', timeframe === tf ? 'bg-zinc-700 text-white' : 'text-zinc-400 hover:text-white cursor-pointer')}
+                className={clsx('px-2 md:px-3 py-1.5 md:py-2 text-[10px] md:text-[12px] font-semibold uppercase tracking-wide rounded-md transition-all', timeframe === tf ? 'bg-white text-black' : 'text-zinc-400 hover:text-white cursor-pointer')}
               >
                 {tf}
               </button>

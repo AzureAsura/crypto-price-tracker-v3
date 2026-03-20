@@ -39,18 +39,19 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
     const router = useRouter()
 
     return (
-        <div className="bg-black overflow-hidden">
-            <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto ">
-                <Table className="min-w-[500px] border-t border-gray-600 w-full border-separate border-spacing-0 ">
-                    <TableHeader className="bg-[#0a0a0a]">
+        <div className="overflow-hidden rounded-2xl">
+            <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto  border border-gray-600 rounded-2xl">
+                <Table className="min-w-[500px] w-full border-separate border-spacing-0 bg-[#030f1f]">
+                    <TableHeader className="">
 
                         <TableRow className="hover:bg-transparent border-none">
-                            <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                            <TableHead className="sticky left-0 z-30 bg-[#030f1f]  w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                 #
                             </TableHead>
-                            <TableHead className="sticky left-[40px] z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                            <TableHead className="sticky left-[40px] bg-[#030f1f] z-20 min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                 Asset Name
                             </TableHead>
+
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                                 Price
                             </TableHead>
@@ -83,15 +84,14 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                 <TableRow
                                     key={coin.id}
                                     onClick={() => router.push(`/cryptocurrencies/${coin.id}`)}
-                                    className="group hover:bg-[#141414] transition-colors cursor-pointer">
+                                    className="group hover:bg-[#1E1E1E] transition-colors cursor-pointer">
 
-                                    <TableCell className="sticky left-0 z-10 bg-black py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
+                                    <TableCell className="sticky left-0 z-10 py-4 pl-4 bg-[#030f1f] group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10 w-[50px]">
                                         <span className='font-bold text-white text-md'>{coin.market_cap_rank}</span>
                                     </TableCell>
 
 
-
-                                    <TableCell className="sticky left-[40px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
+                                    <TableCell className="sticky left-[40px] z-10 py-4 pl-4 bg-[#030f1f] group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
                                         <div className="flex items-center gap-2 md:gap-3 min-w-0">
                                             <img
                                                 src={coin.image}

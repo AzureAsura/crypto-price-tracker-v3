@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Globe, ChevronDown } from 'lucide-react'
+import { Search, Globe, ChevronDown, Github } from 'lucide-react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -57,32 +57,39 @@ const Navbar = ({ coins }: { coins: any[] }) => {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             <div className="flex items-center gap-6 text-[14px] font-semibold text-gray-300">
 
-              <NavLink/>
+              <NavLink />
 
-            <SearchButton initialData={quickPicks} />
+              <SearchButton initialData={quickPicks} />
+            </div>
+
+          </div>
+
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="https://github.com/made-paramasura" 
+              target="_blank"
+              className="p-2 md:p-2.5 rounded-lg card-dark text-white transition-all active:scale-95 group shadow-sm"
+            >
+              <Github
+                size={20}
+                className="text-zinc-400 group-hover:text-white transition-colors"
+              />
+            </Link>
+
+            <Link
+              href={'/sign-in'}
+              className="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap"
+            >
+              Get started
+            </Link>
           </div>
 
         </div>
-
-
-        <div className="flex items-center gap-2 md:gap-4">
-          {/* <button className="flex items-center gap-1.5 hover:bg-white/10 p-2 rounded-lg transition-all text-gray-400 hover:text-white shrink-0">
-            <Globe size={18} className="md:w-[20px]" />
-            <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider">
-              EN<span className="hidden md:inline"> - USD</span>
-            </span>
-          </button> */}
-
-          <Link href={'/sign-in'} className="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap">
-            Get started
-          </Link>
-        </div>
-
       </div>
-    </div>
     </nav >
   )
 }

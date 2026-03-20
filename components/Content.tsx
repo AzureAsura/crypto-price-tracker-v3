@@ -11,7 +11,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
 
   return (
-    <div className="bg-black border-t border-white/10 md:rounded-t-[50px] min-h-screen text-white py-16">
+    <div className="border-t border-white/10 min-h-screen text-white py-16">
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
 
@@ -20,9 +20,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
           <div className="md:col-span-4 flex flex-col gap-4">
 
-
-
-            <div className="bg-black p-5 rounded-xl border border-gray-600 shadow-sm">
+            <div className="card p-6 rounded-xl">
               <div className="flex justify-between items-center pb-4 border-b border-gray-600 mb-6">
                 <h2 className="text-xl font-black text-white tracking-tight uppercase">
                   Market Cap
@@ -46,7 +44,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
               </div>
             </div>
 
-            <div className="bg-black p-5 rounded-xl border border-gray-600 shadow-sm flex-grow flex flex-col">
+            <div className="p-6 rounded-xl card flex-grow flex flex-col">
               <div className="flex justify-between items-center pb-4 border-b border-gray-600 ">
                 <h2 className="text-xl font-black text-white tracking-tight uppercase">
                   Trending Coins
@@ -92,9 +90,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
           </div>
 
           <div className="md:col-span-8">
-            <div className="bg-black rounded-xl border border-gray-600 overflow-hidden shadow-sm h-full flex flex-col">
+            <div className="rounded-xl card overflow-hidden shadow-sm h-full flex flex-col">
 
-              <div className="p-4 flex justify-between items-center border-b border-gray-600">
+              <div className="p-6 flex justify-between items-center border-b border-gray-600">
                 <h3 className="text-white font-black text-xl uppercase tracking-tight">Market Overview</h3>
                 <Link href={'/cryptocurrencies'} className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
                   SEE ALL COINS <ChevronRight size={15} />
@@ -109,7 +107,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 mt-4 items-stretch'>
           <div className="lg:col-span-7">
-            <div className="p-6 rounded-2xl border border-gray-600 h-full flex flex-col justify-between">
+
+
+            <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
                   <h2 className="text-xl font-black text-white tracking-tight uppercase">Top Exchanges</h2>
@@ -120,7 +120,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
                 <div className="space-y-1">
                   {exchanges.map((item, index) => (
-                    <div key={index} className="flex items-center justify-between py-4 rounded-xl hover:bg-white/[0.08] transition-all group cursor-pointer">
+                    <div key={index} className="flex items-center justify-between py-4 px-2 rounded-xl hover:bg-white/[0.08] transition-all group cursor-pointer">
                       <div className="flex items-center gap-5">
                         <img src={item.img} alt="" className="w-12 h-12 object-cover rounded-sm shadow-lg brightness-90 group-hover:brightness-110 transition-all" />
                         <div>
@@ -143,7 +143,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="p-6 rounded-2xl border border-gray-600 h-full flex flex-col justify-between">
+            <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
                 <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Global Discussion</h2>
                 <div className="space-y-6">

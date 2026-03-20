@@ -1,68 +1,30 @@
 import React from 'react'
-
 import { discussions } from '@/constants'
 import RightHeader from './RightHeader'
 import LeftHeader from './LeftHeader'
+import TickersTable from './TickersTable'
 
+const ExchangesData = ({ data }: any) => {
+    if (!data) return null;
 
-
-const CoinsData = () => {
-    const coin = {
-        name: "Bitcoin",
-        symbol: "BTC",
-        image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
-        current_price: 70187,
-        price_change_24h: 2126.88,
-        price_change_percentage_24h: 3.12,
-        market_cap: 1381651251183,
-        total_volume: 20154184933,
-        market_cap_rank: 1,
-    }
-
-    const stats = [
-        {
-            label: "MKT CAP",
-            value: `$${(coin.market_cap / 1e12).toFixed(2)}T`,
-        },
-        {
-            label: "VOL",
-            value: `$${(coin.total_volume / 1e9).toFixed(2)}B`,
-        },
-        {
-            label: "SUPPLY",
-            value: "19.67M",
-        },
-        {
-            label: "DOM",
-            value: "52.4%",
-        },
-    ]
-
-    const isPositive = coin.price_change_percentage_24h > 0
+    const tickers = data?.tickers?.slice(0, 15) || []
 
     return (
-        <div className="min-h-screen bg-black text-white py-20">
+        <div className="min-h-screen text-white pt-20 md:pt-24 pb-10">
             <div className='px-4 md:px-0 md:w-[95vw] mx-auto'>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
 
-                    <div className="lg:col-span-8 flex flex-col gap-4">
+                    <div className="lg:col-span-8 flex flex-col gap-4 lg:sticky lg:top-24">
+                        <LeftHeader data={data} />
 
-                        <LeftHeader/>
-
-                        {/* <ChartById /> */}
-
+                        <TickersTable tickers={tickers} />
                     </div>
 
+                    <div className="lg:col-span-4 flex flex-col gap-4 lg:sticky lg:top-24 h-fit">
+                        <RightHeader data={data} />
 
-
-
-                    <div className="lg:col-span-4 flex flex-col gap-6">
-
-                        <RightHeader />
-
-
-                        <div className="p-6 rounded-2xl border border-gray-600 h-full flex flex-col justify-between">
+                        <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
                             <div>
                                 <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Global Discussion</h2>
                                 <div className="space-y-6">
@@ -87,7 +49,6 @@ const CoinsData = () => {
                                 Join the Discussion
                             </button>
                         </div>
-
                     </div>
 
                 </div>
@@ -96,6 +57,4 @@ const CoinsData = () => {
     )
 }
 
-
-
-export default CoinsData
+export default ExchangesData

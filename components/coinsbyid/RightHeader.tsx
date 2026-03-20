@@ -5,7 +5,7 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
     return (
         <div className="flex flex-col gap-4 relative">
 
-            <div className="bg-black p-6 rounded-xl border border-gray-600 shadow-sm">
+            <div className="card p-6 rounded-xl">
 
                 <div className="flex items-center justify-between pb-4 border-b border-gray-600 mb-6">
                     <h2 className="text-xl font-black text-white tracking-tight uppercase">
@@ -32,7 +32,7 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
 
             </div>
 
-            <div className="bg-black p-6 rounded-xl border border-gray-600 shadow-sm">
+            <div className="card p-6 rounded-xl shadow-sm">
                 <h3 className="text-white font-black text-sm uppercase tracking-tight mb-4 border-b border-gray-600 pb-2">
                     Official Links
                 </h3>
@@ -66,13 +66,13 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
             </div>
 
             {categories && (
-                <div className="bg-black p-6 rounded-xl border border-gray-600 shadow-sm">
+                <div className="card p-6 rounded-xl  shadow-sm">
                     <h3 className="text-white font-black text-sm uppercase tracking-tight mb-4 border-b border-gray-600 pb-2">
                         Tags & Categories
                     </h3>
                     <div className="flex flex-wrap gap-2">
                         {categories.slice(0, 8).map((cat: string, i: number) => (
-                            <span key={i} className="px-2 py-1 bg-zinc-900 border border-zinc-700 text-[10px] font-black text-zinc-400 rounded uppercase">
+                            <span key={i} className="px-2 py-1  bg-white/5 border border-gray-600 text-[10px] font-black text-zinc-400 rounded uppercase">
                                 {cat}
                             </span>
                         ))}

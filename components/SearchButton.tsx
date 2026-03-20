@@ -28,7 +28,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <div className="hidden lg:flex items-center bg-[#2a2e39] px-4 py-2 rounded-full w-64 text-gray-400 border border-transparent hover:border-gray-500 transition-all cursor-pointer group">
+                <div className="flex items-center bg-[#2a2e39] px-4 py-2 rounded-full w-56 text-gray-400 border border-transparent hover:border-gray-500 transition-all cursor-pointer group">
                     <Search size={16} className="mr-2 group-hover:text-white" />
                     <span className="text-sm font-medium">Search</span>
                 </div>

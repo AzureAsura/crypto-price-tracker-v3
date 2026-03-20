@@ -15,12 +15,12 @@ const ContentTable = ({ coins }: any) => {
   const router = useRouter()
 
   return (
-    <div className="bg-[#0a0a0a] overflow-hidden">
+    <div className="overflow-hidden">
       <div className="overflow-x-auto custom-scrollbar">
-        <Table className="min-w-[500px] w-full border-separate border-spacing-0 ">
-          <TableHeader className="bg-[#0a0a0a]">
+        <Table className="min-w-[500px] w-full border-separate border-spacing-0 overflow-hidden">
+          <TableHeader className="">
             <TableRow className="hover:bg-transparent border-none">
-              <TableHead className="sticky left-0 z-20 bg-[#0a0a0a] min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+              <TableHead className="sticky left-0 z-20 min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                 Asset Name
               </TableHead>
               <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
@@ -48,9 +48,9 @@ const ContentTable = ({ coins }: any) => {
                 <TableRow
                   key={coin.id}
                   onClick={() => router.push(`/cryptocurrencies/${coin.id}`)}
-                  className="group hover:bg-[#141414] transition-colors cursor-pointer">
+                  className="group hover:bg-[#1E1E1E] transition-colors cursor-pointer">
 
-                  <TableCell className="sticky left-0 z-10 bg-[#0a0a0a] py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
+                  <TableCell className="sticky left-0 z-10 py-4 pl-4 group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10">
                     <div className="flex items-center gap-3">
                       <img src={coin.image} alt="" className="w-7 h-7 object-contain" />
                       <div className="flex flex-col">

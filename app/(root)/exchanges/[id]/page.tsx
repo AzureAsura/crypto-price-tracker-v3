@@ -1,14 +1,17 @@
 import ExchangesData from '@/components/exchanges/ExchangesData'
+import { getExchangeById } from '@/lib/data/exchanges'
 import React from 'react'
 
 const page = async({ params } : { params :  { id: string }}) => {
 
-    const id = await params
+    const { id } = await params
+
+    const data = await getExchangeById(id)
 
 
   return (
     <div className=''>
-        <ExchangesData/>
+        <ExchangesData data={data}/>
     </div>
   )
 }

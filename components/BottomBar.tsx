@@ -11,7 +11,7 @@ const BottomBar = () => {
     const pathname = usePathname()
 
     return (
-        <section className='fixed bottom-0 z-[100] w-full rounded-t-3xl border-t border-white/5 bg-[#0e0e10]/80 p-3 backdrop-blur-2xl xs:px-7 md:hidden'>
+        <section className='fixed bottom-0 z-[100] w-full rounded-t-3xl border-t border-white/5 bg-[#0e0e10]/80 p-3 backdrop-blur-2xl xs:px-7 lg:hidden'>
             <div className='flex items-center justify-between gap-1 xs:gap-3'>
                 {bottomBarLinks.map((link) => {
                     const isActive =
