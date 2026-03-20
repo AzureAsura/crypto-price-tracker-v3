@@ -90,15 +90,6 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                     </TableCell>
 
 
-                                    {/* <TableCell className="sticky left-[40px] z-10  py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10">
-                                        <div className="flex items-center gap-3">
-                                            <img src={coin.image} alt="" className="w-7 h-7 object-contain" />
-                                            <div className="flex flex-col">
-                                                <span className="font-bold text-white text-md whitespace-nowrap">{coin.name}</span>
-                                                <span className="text-[10px] text-white font-semibold uppercase">{coin.symbol}</span>
-                                            </div>
-                                        </div>
-                                    </TableCell> */}
 
                                     <TableCell className="sticky left-[40px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[140px] max-w-[160px]">
                                         <div className="flex items-center gap-2 md:gap-3 min-w-0">

@@ -4,7 +4,7 @@ import ChartById from './ChartById'
 import RightHeader from './RightHeader'
 import { discussions } from '@/constants'
 
-const CoinsData = ({ data }: any) => {
+const CoinsData = ({ data, coinId }: any) => {
   if (!data) return null;
 
   return (
@@ -15,7 +15,7 @@ const CoinsData = ({ data }: any) => {
 
           <div className="lg:col-span-8 flex flex-col gap-4 lg:sticky lg:top-24">
             <LeftHeader data={data} />
-            <ChartById data={data.historical_prices} />
+            <ChartById coinId={coinId} />
 
           </div>
 

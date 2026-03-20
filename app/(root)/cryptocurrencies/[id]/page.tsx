@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
     return (
         <div className=''>
-            <CoinsData data={data}/>
+            <CoinsData data={data} coinId={id}/>
         </div>
     )
 }

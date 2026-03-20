@@ -1,30 +1,38 @@
 import React from 'react'
 
 const LeftHeader = ({ data }: any) => {
-    if (!data) return null;
+   if (!data) return null;
 
-    const isPositive = data.price_change_percentage_24h > 0
+    const priceChange = data.price_change_percentage_24h ?? 0
+    const isPositive = priceChange > 0
+
+    const safeLocale = (num: number | null | undefined) => {
+        return num ? num.toLocaleString('id-ID') : "---"
+    }
 
     const mainStats = [
         {
-            label: "Market Cap: ",
-            value: data.market_cap.toLocaleString('id-ID'),
+            label: "Market Cap",
+            value: safeLocale(data.market_cap),
         },
         {
-            label: "VOL 24H: ",
-            value: data.total_volume.toLocaleString('id-ID'),
+            label: "VOL 24H",
+            value: safeLocale(data.total_volume),
         },
         {
-            label: "SUPPLY: ",
-            value: data.circulating_supply.toLocaleString('id-ID'),
+            label: "SUPPLY",
+            value: safeLocale(data.circulating_supply),
         },
     ]
 
-    const formatCompact = (num: number) => {
-        if (num >= 1e12) return (num / 1e12).toFixed(2) + "T"
-        if (num >= 1e9) return (num / 1e9).toFixed(2) + "B"
-        if (num >= 1e6) return (num / 1e6).toFixed(2) + "M"
-        if (num >= 1e3) return (num / 1e3).toFixed(2) + "K"
+    const formatCompact = (num: number | null | undefined) => {
+        if (num === null || num === undefined || isNaN(num)) return "---"
+        
+        const absoluteNum = Math.abs(num)
+        if (absoluteNum >= 1e12) return (num / 1e12).toFixed(2) + "T"
+        if (absoluteNum >= 1e9) return (num / 1e9).toFixed(2) + "B"
+        if (absoluteNum >= 1e6) return (num / 1e6).toFixed(2) + "M"
+        if (absoluteNum >= 1e3) return (num / 1e3).toFixed(2) + "K"
         return num.toFixed(2)
     }
 
@@ -42,7 +50,6 @@ const LeftHeader = ({ data }: any) => {
             value: formatCompact(data.ath),
         },
     ]
-
     return (
         <div className="border border-gray-600 rounded-2xl p-6 bg-black shadow-2xl relative overflow-hidden">
 
@@ -91,7 +98,8 @@ const LeftHeader = ({ data }: any) => {
                                 }`}>
                                 {isPositive ? '▲' : '▼'}
                                 <span className="opacity-60 ml-1">
-                                    ({data.price_change_percentage_24h.toFixed(2)}%)
+                                    {/* ({data.price_change_percentage_24h.toFixed(2)}%) */}
+                                    ({(data.price_change_percentage_24h ?? 0).toFixed(2)}%)
                                 </span>
                             </div>
 

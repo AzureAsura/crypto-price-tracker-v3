@@ -31,7 +31,6 @@ const News = () => {
                                 <span className="text-blue-500/80 group-hover:text-blue-400">{news.source}</span>
                             </div>
 
-                            {/* Title */}
                             <h3 className="text-[15px] font-bold text-gray-300 leading-relaxed group-hover:text-white transition-colors line-clamp-2">
                                 {news.title}
                             </h3>

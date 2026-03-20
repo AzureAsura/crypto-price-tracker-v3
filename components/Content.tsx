@@ -1,22 +1,22 @@
-'use client'
-import { TrendingUp, TrendingDown, Clock, ChevronRight } from 'lucide-react'
+
+import { ChevronRight } from 'lucide-react'
 import ContentTable from './ContentTable';
-import { indicesData, discussions, exchanges } from '@/constants'
+import { discussions, exchanges } from '@/constants'
 import DemoChart from './DemoChart';
 import Link from 'next/link';
 import clsx from 'clsx';
 
 
-const Content = ({ data }: any) => {
+const Content = ({ data, trendingCoins, coins }: any) => {
 
 
   return (
     <div className="bg-black border-t border-white/10 md:rounded-t-[50px] min-h-screen text-white py-16">
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
- 
+
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
-  
+
 
           <div className="md:col-span-4 flex flex-col gap-4">
 
@@ -54,32 +54,39 @@ const Content = ({ data }: any) => {
               </div>
 
               <div className="space-y-2 flex-grow py-3">
-                {indicesData.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-all"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-1 h-5 rounded-full ${item.isDown ? 'bg-red-500' : 'bg-green-500'}`} />
-                      <div>
-                        <div className="text-white font-bold text-sm">{item.name}</div>
-                        <div className="text-[10px] text-gray-500 uppercase">{item.desc}</div>
-                      </div>
-                    </div>
+                {trendingCoins?.slice(0, 5).map((item: any, idx: number) => {
+                  const isDown = item.price_change_percentage_24h < 0;
 
-                    <div className="text-right">
-                      <div className="text-white text-sm font-bold">{item.price}</div>
-                      <div className={`text-[10px] font-bold ${item.isDown ? 'text-red-500' : 'text-green-500'}`}>
-                        {item.isDown ? '▼' : '▲'} {item.percent}
+                  return (
+                    < Link
+                      href={`/cryptocurrencies/${item.id}`}
+                      key={item.id || idx}
+                      className="flex justify-between items-center group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-all"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-1 h-5 rounded-full ${isDown ? 'bg-red-500' : 'bg-green-500'}`} />
+                        <div>
+                          <div className="text-white font-bold text-sm">{item.name}</div>
+                          <div className="text-[10px] text-gray-500 uppercase">{item.symbol}</div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
+
+                      <div className="text-right">
+                        <div className="text-white text-sm font-bold">
+                          IDR {item.current_price?.toLocaleString('id-ID')}
+                        </div>
+                        <div className={`text-[10px] font-bold ${isDown ? 'text-red-500' : 'text-green-500'}`}>
+                          {isDown ? '▼' : '▲'} {Math.abs(item.price_change_percentage_24h).toFixed(2)}%
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
-              <button className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
+              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors text-center">
                 View All Trending
-              </button>
+              </Link>
             </div>
 
           </div>
@@ -94,7 +101,7 @@ const Content = ({ data }: any) => {
                 </Link>
               </div>
 
-              <ContentTable />
+              <ContentTable coins={coins}/>
             </div>
           </div>
 

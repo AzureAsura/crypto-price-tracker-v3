@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from 'react'
-import { Search, Coins, TrendingUp, History } from 'lucide-react'
+
+import React, { useActionState, useState } from 'react'
+import { Search, Loader2 } from 'lucide-react'
 import {
     Dialog,
     DialogContent,
@@ -9,17 +10,23 @@ import {
     DialogTitle
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { searchActions } from '@/lib/actions/search'
+import Link from 'next/link'
 
-const SearchButton = () => {
+const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
 
-    const topCoins = [
-        { id: 'bitcoin', name: 'Bitcoin', symbol: 'BTC', price: 'IDR 1.42B', change: '+2.4%' },
-        { id: 'ethereum', name: 'Ethereum', symbol: 'ETH', price: 'IDR 52.1M', change: '-1.2%' },
-        { id: 'solana', name: 'Solana', symbol: 'SOL', price: 'IDR 2.4M', change: '+5.7%' },
-    ]
+    const [open, setOpen] = useState(false);
+
+    const [state, formAction, isPending] = useActionState(searchActions, {
+        coins: [],
+        initial: true,
+    });
+
+    const displayCoins = state.coins.length > 0 ? state.coins : (state.initial ? initialData : []);
+
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <div className="hidden lg:flex items-center bg-[#2a2e39] px-4 py-2 rounded-full w-64 text-gray-400 border border-transparent hover:border-gray-500 transition-all cursor-pointer group">
                     <Search size={16} className="mr-2 group-hover:text-white" />
@@ -31,68 +38,82 @@ const SearchButton = () => {
 
                 <DialogHeader className="px-5 pt-4 border-b border-white/10 relative">
 
-                
-
                     <DialogTitle className="text-white text-lg font-semibold">
                         Search
                     </DialogTitle>
 
-                    <div className="relative flex items-center">
-                        <Search className="absolute left-0 h-4 w-4 text-zinc-400" />
-                        <Input
-                            placeholder="Search assets..."
-                            className="h-10 pl-7 bg-transparent border-none focus-visible:ring-0 text-white text-base placeholder:text-zinc-500 font-medium"
-                        />
-                    </div>
+                    <form action={formAction} className="px-5 pt-4 border-b border-white/10">
+                        <div className="relative flex items-center mb-4">
+                            {isPending ? (
+                                <Loader2 className="absolute left-0 h-4 w-4 text-zinc-400 animate-spin" />
+                            ) : (
+                                <Search className="absolute left-0 h-4 w-4 text-zinc-400" />
+                            )}
+                            <Input
+                                name="query"
+                                placeholder="Cari asset lalu tekan Enter..."
+                                autoComplete="off"
+                                className="h-10 pl-7 bg-transparent border-none focus-visible:ring-0 text-white text-base placeholder:text-zinc-500 font-medium"
+                            />
+                        </div>
+                    </form>
                 </DialogHeader>
 
                 <div className="max-h-[380px] overflow-y-auto custom-scrollbar py-3 px-2 space-y-2">
 
-                    <div className="text-[11px] text-zinc-500 uppercase tracking-wide font-medium px-1">
-                        Trending
-                    </div>
+                    {state.initial && !isPending && (
+                        <p className="px-3 pb-2 text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">
+                            Recommended Assets
+                        </p>
+                    )}
 
-                    {topCoins.map((coin) => (
-                        <div
-                            key={coin.id}
-                            className="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 cursor-pointer transition"
-                        >
+                    {state.error && (
+                        <div className="p-4 text-center text-red-500 text-xs font-bold">{state.error}</div>
+                    )}
 
-                            <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                                    <Coins size={14} className="text-zinc-400" />
+                    {displayCoins.length > 0 ? (
+                        displayCoins.map((coin: any) => (
+                            <Link
+                                onClick={() => setOpen(false)} 
+                                href={`/cryptocurrencies/${coin.id}`}
+                                key={coin.id}
+                                className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 cursor-pointer group transition-all"
+                            >
+
+                                <div className="flex items-center gap-3">
+                                    <img src={coin.image || coin.thumb} alt={coin.name} className="w-8 h-8 rounded-full bg-zinc-800" />
+                                    <div className="flex flex-col leading-none">
+                                        <span className="text-sm font-bold text-white group-hover:text-blue-600">
+                                            {coin.name}
+                                        </span>
+                                        <span className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">
+                                            {coin.symbol}
+                                        </span>
+                                    </div>
                                 </div>
-
-                                <div className="flex flex-col leading-tight">
-                                    <span className="text-sm font-semibold text-white">
-                                        {coin.name}
-                                    </span>
-                                    <span className="text-[11px] text-zinc-500 uppercase">
-                                        {coin.symbol}
-                                    </span>
+                                <div className="text-[9px] bg-zinc-900 border border-zinc-800 text-zinc-400 px-2 py-1 rounded font-black uppercase">
+                                    Rank #{coin.market_cap_rank || '??'}
                                 </div>
-                            </div>
+                            </Link>
+                        ))
+                    ) : (
 
-                            <div className="text-right">
-                                <p className="text-sm font-semibold text-white">
-                                    {coin.price}
-                                </p>
-                                <p className={`text-[11px] font-medium ${coin.change.startsWith('+') ? 'text-green-400' : 'text-red-400'
-                                    }`}>
-                                    {coin.change}
-                                </p>
-                            </div>
+                        <div className="py-20 text-center flex flex-col items-center gap-2">
+                            <Search size={32} className="text-zinc-800" />
+                            <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">
+                                {isPending ? 'Searching Blockchain...' : 'Signal Lost / Not Found'}
+                            </p>
                         </div>
-                    ))}
+                    )}
                 </div>
 
-                <div className="px-5 py-3 border-t border-white/10 flex justify-between items-center text-[11px] text-zinc-500">
-                    <span>Nirmala Finance</span>
-                    <span>ESC to close</span>
-                </div>
+            <div className="px-5 py-3 border-t border-white/10 flex justify-between items-center text-[11px] text-zinc-500">
+                <span>Nirmala Finance</span>
+                <span>ESC to close</span>
+            </div>
 
-            </DialogContent>
-        </Dialog>
+        </DialogContent>
+        </Dialog >
     )
 }
 

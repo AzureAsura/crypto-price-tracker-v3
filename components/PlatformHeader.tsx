@@ -42,7 +42,6 @@ export default function PlatformHeader() {
             </div>
 
 
-            {/* RIGHT */}
             <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-between h-full min-h-[180px] shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-500">
 
                 <div className="flex justify-between items-start relative z-10">
@@ -67,7 +66,6 @@ export default function PlatformHeader() {
 
                 </div>
 
-                {/* CHART */}
                 <div className="absolute bottom-0 left-0 right-0 h-24 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={platformGrowthData}>

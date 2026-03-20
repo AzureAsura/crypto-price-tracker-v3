@@ -108,7 +108,6 @@ const LeftHeader = () => {
                         {stats.map((item, i) => (
                             <div className="flex flex-col leading-tight" key={i}>
                                 <div className="flex items-center gap-1">
-                                    {/* Icon kecil di samping label */}
                                     <span className="opacity-70">{item.icon}</span>
                                     <span className="text-[10px] tracking-widest text-zinc-500 uppercase">
                                         {item.label}
