@@ -20,7 +20,7 @@ export default function PlatformHeader() {
 
     return (
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-10 pt-20 md:pt-24 px-4 md:px-0 md:w-[95vw] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-10 pt-24 px-4 md:px-0 md:w-[95vw] mx-auto">
 
             <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-center h-full shadow-2xl transition-all hover:border-zinc-500">
                 <div className="space-y-4">

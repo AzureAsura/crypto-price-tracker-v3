@@ -48,9 +48,9 @@ const ContentTable = ({ coins }: any) => {
                 <TableRow
                   key={coin.id}
                   onClick={() => router.push(`/cryptocurrencies/${coin.id}`)}
-                  className="group hover:bg-[#1E1E1E] transition-colors cursor-pointer">
+                  className="group hover:bg-white/5 transition-colors cursor-pointer">
 
-                  <TableCell className="sticky left-0 z-10 py-4 pl-4 group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10">
+                  <TableCell className="sticky left-0 z-10 py-4 pl-4  transition-colors border-b border-white/10">
                     <div className="flex items-center gap-3">
                       <img src={coin.image} alt="" className="w-7 h-7 object-contain" />
                       <div className="flex flex-col">

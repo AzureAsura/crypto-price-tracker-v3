@@ -3,11 +3,10 @@ import React from 'react'
 const LeftHeader = ({ data }: any) => {
     if (!data) return null;
 
+    console.log(data)
+
     const mainTicker = data?.tickers?.[0];
 
-    const USD_TO_IDR = 15800;
-
-    const priceInIDR = mainTicker?.last ? (mainTicker.last * USD_TO_IDR) : 0;
 
     const safeLocale = (num: number | null | undefined) => {
         return num ? num.toLocaleString('id-ID') : "---"
@@ -15,8 +14,8 @@ const LeftHeader = ({ data }: any) => {
 
     const mainStats = [
         {
-            label: "24H VOL (BTC)",
-            value: safeLocale(data.trade_volume_24h_btc),
+            label: "TOP PAIR VOL",
+            value: mainTicker?.volume ? mainTicker.volume.toLocaleString('id-ID', { maximumFractionDigits: 0 }) : "---",
         },
         {
             label: "TRUST RANK",
@@ -53,15 +52,24 @@ const LeftHeader = ({ data }: any) => {
                     </div>
                 </div>
 
+
+
                 <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-8">
                     <div className="space-y-3">
-                        <div className="flex items-baseline gap-3">
 
-                            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-none">
-                                {priceInIDR ? priceInIDR.toLocaleString('id-ID') : '---'}
-                            </h2>
-                            <span className="text-sm md:text-base text-zinc-500 font-semibold uppercase">IDR</span>
+                        <div className="space-y-1">
+                            <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-bold">
+                                24h Trading Volume
+                            </span>
+                            <div className="flex items-baseline gap-3">
+                                <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-none">
+                                    {data.trade_volume_24h_btc ? safeLocale(data.trade_volume_24h_btc) : '---'}
+                                </h2>
+
+                                <span className="text-sm md:text-base text-zinc-500 font-semibold uppercase">BTC</span>
+                            </div>
                         </div>
+
 
 
                         <div className="flex items-center gap-3">
@@ -102,7 +110,7 @@ const LeftHeader = ({ data }: any) => {
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -47,13 +47,13 @@ const TickersTable = ({ tickers }: any) => {
                         {tickers?.map((ticker: any, index: number) => (
                             <TableRow
                                 key={index}
-                                className="group hover:bg-[#1E1E1E] transition-colors border-none"
+                                className="group hover:bg-white/5 transition-colors border-none"
                             >
-                                <TableCell className="sticky left-0 z-10 py-4 pl-6 group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10">
+                                <TableCell className="sticky left-0 z-10 py-4 pl-6  transition-colors border-b border-white/10">
                                     <Link href={`/cryptocurrencies/${ticker.coin_id}`} className="flex items-center gap-3">
                                         <div className="flex flex-col">
                                             <span className="font-bold text-white text-[15px] whitespace-nowrap uppercase">
-                                                {ticker.base}<span className="text-zinc-600 text-[11px] ml-1">/{ticker.target}</span>
+                                                {ticker.base}<span className="text-zinc-300 text-[11px] ml-1">/{ticker.target}</span>
                                             </span>
                                             <span className="text-[9px] text-white font-bold uppercase tracking-widest">
                                                 {ticker.market?.name}
@@ -66,7 +66,7 @@ const TickersTable = ({ tickers }: any) => {
                                     ${ticker.last > 1 ? ticker.last.toLocaleString('id-ID') : ticker.last.toFixed(6)}
                                 </TableCell>
 
-                                <TableCell className="text-right text-zinc-400 whitespace-nowrap px-4 text-[15px] border-b border-white/10">
+                                <TableCell className="text-right text-white whitespace-nowrap px-4 text-[15px] border-b border-white/10">
                                     ${Math.round(ticker.converted_volume?.usd || 0).toLocaleString('id-ID')}
                                 </TableCell>
 

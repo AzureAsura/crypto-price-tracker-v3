@@ -10,7 +10,7 @@ const ExchangesData = ({ data }: any) => {
     const tickers = data?.tickers?.slice(0, 15) || []
 
     return (
-        <div className="min-h-screen text-white pt-20 md:pt-24 pb-10">
+        <div className="min-h-screen text-white pt-24 pb-10">
             <div className='px-4 md:px-0 md:w-[95vw] mx-auto'>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">

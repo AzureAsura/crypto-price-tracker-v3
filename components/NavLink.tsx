@@ -7,6 +7,12 @@ import {
 import Link from 'next/link'
 import { ChevronDown, BarChart3, TrendingUp, Newspaper, Info } from 'lucide-react'
 
+const navLink2 = [
+    {name: 'Crypto News', href: '/news', description: 'Berita terkini seputar dunia blockchain dan teknologi Web3 secara global.'},
+    {name: 'About Us', href: '/about', description: 'Pelajari lebih lanjut tentang visi, misi, dan tujuan platform kami.'},
+    {name: 'Global Discussion', href: '/discussion',  description: 'Coba fitur Global Discussion kami'},
+]
+
 const NavLink = () => {
     return (
         <>
@@ -80,37 +86,23 @@ const NavLink = () => {
                 >
 
                     <div className="grid grid-cols-2 gap-4">
-                        <Link
-                            href="/news"
+                        {navLink2.map((item) => (
+                            <Link
+                            key={item.name}
+                            href={item.href}
                             className="flex flex-col gap-2 p-4 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
                         >
                             <div className="flex items-center gap-2 text-green-400">
-                                <Newspaper size={18} />
                                 <span className="font-bold text-sm text-white">
-                                    Crypto News
+                                    {item.name}
                                 </span>
                             </div>
 
                             <p className="text-xs text-gray-400 leading-relaxed whitespace-normal break-words">
-                                Berita terkini seputar dunia blockchain dan teknologi Web3 secara global.
+                                {item.description}
                             </p>
                         </Link>
-
-                        <Link
-                            href="/about"
-                            className="flex flex-col gap-2 p-4 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
-                        >
-                            <div className="flex items-center gap-2 text-purple-400">
-                                <Info size={18} />
-                                <span className="font-bold text-sm text-white">
-                                    About Us
-                                </span>
-                            </div>
-
-                            <p className="text-xs text-gray-400 leading-relaxed whitespace-normal break-words">
-                                Pelajari lebih lanjut tentang visi, misi, dan tujuan platform kami.
-                            </p>
-                        </Link>
+                        ))}
 
                     </div>
 

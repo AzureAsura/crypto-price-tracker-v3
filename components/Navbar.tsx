@@ -1,12 +1,13 @@
-'use client'
 
-import { useState, useEffect } from 'react'
-import { Search, Globe, ChevronDown, Github } from 'lucide-react'
+import { Github } from 'lucide-react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
 import SearchButton from './SearchButton'
 import NavLink from './NavLink'
+import { auth } from '@/auth'
+
+
 
 
 const navLink = [
@@ -16,29 +17,24 @@ const navLink = [
   { name: 'News', href: '/news' }
 ]
 
-const Navbar = ({ coins }: { coins: any[] }) => {
+interface ProfileData {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  bio?: string | null;
+  createdAt?: Date | string;
+}
+
+const Navbar = async ({ coins, userData }: { coins: any[], userData: ProfileData }) => {
+
+  const session = await auth()
 
   const quickPicks = coins.slice(0, 5);
 
-  const [hasScroll, setHasScroll] = useState(false)
-
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setHasScroll(window.scrollY > 32)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-
   return (
     <nav
-      className={clsx(
-        "fixed top-0 left-0 w-full z-50 transition-all",
-        hasScroll &&
-        "bg-black/70 backdrop-blur-md before:absolute before:inset-0 before:bg-gradient-to-b before:from-blue-400/20 before:to-transparent before:pointer-events-none"
-      )}
+      className="fixed top-0 left-0 w-full z-50 transition-all card"
     >
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto rounded-xl py-4 flex items-center shadow-2xl">
 
@@ -70,7 +66,7 @@ const Navbar = ({ coins }: { coins: any[] }) => {
 
           <div className="flex items-center gap-2">
             <Link
-              href="https://github.com/made-paramasura" 
+              href="https://github.com/made-paramasura"
               target="_blank"
               className="p-2 md:p-2.5 rounded-lg card-dark text-white transition-all active:scale-95 group shadow-sm"
             >
@@ -80,12 +76,34 @@ const Navbar = ({ coins }: { coins: any[] }) => {
               />
             </Link>
 
-            <Link
-              href={'/sign-in'}
-              className="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap"
-            >
-              Get started
-            </Link>
+            {session ? (
+              <Link href={'/profile'} className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/5">
+                <div className="hidden md:flex flex-col items-end leading-tight">
+                  <span className="text-[12px] font-bold text-white truncate max-w-[100px]">
+                    {userData.name}
+                  </span>
+                  <span className="text-[10px] text-zinc-300 truncate max-w-[100px]">
+                    {userData.email}
+                  </span>
+                </div>
+                <div className="relative w-[35px] h-[35px] shrink-0">
+                  <Image
+                    src={userData.image || "/placeholder.jpg"}
+                    alt="avatar"
+                    fill 
+                    className="rounded-full border border-blue-500/30 object-cover" 
+                    priority
+                  />
+                </div>
+              </Link>
+            ) : (
+              <Link
+                href={'/auth'}
+                className="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap"
+              >
+                Get started
+              </Link>
+            )}
           </div>
 
         </div>

@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import BottomBar from '@/components/BottomBar'
 import Content from '@/components/Content'
 import Footer from '@/components/Footer'
@@ -9,22 +10,19 @@ import React from 'react'
 
 const page = async () => {
 
-  const data = await getBtcMarketCap()
-
-  const coins = await getCoins()
-
-
-  const trendingCoins = await getTrendingCoins()
+  const [data, coins, trendingCoins] = await Promise.all([
+    getBtcMarketCap(),
+    getCoins(),
+    getTrendingCoins(),
+  ])
 
 
   return (
     <>
-      <Navbar coins={coins}/>
       <Hero />
-      <Content data={data} trendingCoins={trendingCoins} coins={coins}/>
+      <Content data={data} trendingCoins={trendingCoins} coins={coins} />
       <News />
-      <BottomBar/>
-      <Footer/>
+      <BottomBar />
     </>
   )
 }
