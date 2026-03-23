@@ -49,26 +49,26 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                                 #
                             </TableHead>
                             <TableHead className="sticky left-[40px] bg-[#030f1f] z-20 min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                Asset Name
+                                nama aset
                             </TableHead>
 
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                Price
+                                harga
+                            </TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest font-bold text-white border-b border-gray-600">
+                                1j %
+                            </TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest font-bold text-white border-b border-gray-600">
+                                24j %
+                            </TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest font-bold text-white border-b border-gray-600">
+                                7h %
                             </TableHead>
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                1h %
-                            </TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                24h %
-                            </TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                7d %
-                            </TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                Market Cap
+                                Kapitalisasi pasar
                             </TableHead>
                             <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">
-                                Last 7 Days
+                                7 hari terakhir
                             </TableHead>
                         </TableRow>
                     </TableHeader>

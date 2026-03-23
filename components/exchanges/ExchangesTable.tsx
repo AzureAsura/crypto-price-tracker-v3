@@ -25,19 +25,19 @@ const ExchangesTable = ({ initialData }: { initialData: any[] }) => {
                                     #
                                 </TableHead>
                                 <TableHead className="sticky left-[40px] z-20 bg-[#030f1f] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                    Exchange Name
+                                    nama bursa
                                 </TableHead>
                                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                    Trust Score
+                                    Tingkat Kepercayaan
                                 </TableHead>
                                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                    Year Established
+                                    tahun berdiri
                                 </TableHead>
                                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                    Country
+                                    negara asal
                                 </TableHead>
                                 <TableHead className="text-right px-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                                    24H Vol
+                                    Volume 24j
                                 </TableHead>
                             </TableRow>
                         </TableHeader>

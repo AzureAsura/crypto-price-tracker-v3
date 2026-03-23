@@ -19,7 +19,7 @@ const NavLink = () => {
 
             <DropdownMenu>
                 <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition cursor-pointer text-[14px] font-semibold">
-                    Cryptocurrencies
+                    Koin
                     <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform text-gray-500" />
                 </DropdownMenuTrigger>
 
@@ -34,9 +34,8 @@ const NavLink = () => {
                             className="flex flex-col gap-1 p-4 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
                         >
                             <div className="flex items-center gap-2 text-blue-400">
-                                <BarChart3 size={18} />
                                 <span className="font-bold text-sm text-white">
-                                    Market Cap
+                                    Kapitalisasi Pasar
                                 </span>
                             </div>
 
@@ -50,9 +49,8 @@ const NavLink = () => {
                             className="flex flex-col gap-2 p-2 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
                         >
                             <div className="flex items-center gap-2 text-orange-400">
-                                <TrendingUp size={18} />
                                 <span className="font-bold text-sm text-white">
-                                    Trending
+                                    Sedang Tren
                                 </span>
                             </div>
 
@@ -67,16 +65,16 @@ const NavLink = () => {
 
 
             <Link href="/exchanges" className="text-gray-400 hover:text-white transition-colors text-[14px] font-semibold tracking-tight">
-                Exchanges
+                Bursa
             </Link>
 
             <Link href="/platforms" className="text-gray-400 hover:text-white transition-colors text-[14px] font-semibold tracking-tight">
-                Platforms
+                Platform
             </Link>
 
             <DropdownMenu>
                 <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition cursor-pointer text-[14px] font-semibold">
-                    More
+                    Lainnya
                     <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform duration-300 text-gray-500" />
                 </DropdownMenuTrigger>
 

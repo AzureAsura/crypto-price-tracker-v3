@@ -41,12 +41,12 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
                     <TableHeader className="bg-[#030f1f]">
                         <TableRow className="hover:bg-transparent border-none">
                             <TableHead className="sticky left-0 z-30 bg-[#030f1f] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">#</TableHead>
-                            <TableHead className="sticky left-[50px] z-20 bg-[#030f1f] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Asset Name</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Price</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">24h %</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Rank</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Market Cap</TableHead>
-                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">Last 7 Days (Sparkline)</TableHead>
+                            <TableHead className="sticky left-[50px] z-20 bg-[#030f1f] min-w-[140px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">nama aset</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">harga</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest font-bold text-white border-b border-gray-600">24j %</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">peringkat</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">Kapitalisasi pasar</TableHead>
+                            <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">7 hari terakhir (Sparkline)</TableHead>
                         </TableRow>
                     </TableHeader>
 

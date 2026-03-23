@@ -58,7 +58,7 @@ const page = async () => {
           />
         </div>
 
-        <p className='text-3xl font-black mt-7 text-center leading-7 uppercase text-white'>
+        <p className='text-3xl font-black mt-7 text-center leading-7 text-white'>
           @{data?.name}
         </p>
 

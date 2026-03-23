@@ -12,8 +12,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { searchActions } from '@/lib/actions/search'
 import Link from 'next/link'
+import { IoSearchOutline } from 'react-icons/io5'
 
-const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
+const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
 
     const [open, setOpen] = useState(false);
 
@@ -28,10 +29,12 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <div className="flex items-center bg-[#2a2e39] px-4 py-2 rounded-full w-56 text-gray-400 border border-transparent hover:border-gray-500 transition-all cursor-pointer group">
-                    <Search size={16} className="mr-2 group-hover:text-white" />
-                    <span className="text-sm font-medium">Cari Koin</span>
-                </div>
+                <button className='relative flex flex-col items-center gap-1 flex-1 -mt-6'>
+                    <div className='w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-900/60 transition-all'>
+                        <IoSearchOutline size={24} className='text-white' />
+                    </div>
+                    <p className='text-[9px] font-black uppercase tracking-widest text-zinc-500'>Search</p>
+                </button>
             </DialogTrigger>
 
             <DialogContent className="sm:max-w-[700px]  bg-[#030f1f] border border-white/10 p-0 overflow-hidden rounded-xl">
@@ -39,7 +42,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                 <DialogHeader className="px-5 pt-4 border-b border-white/10 relative">
 
                     <DialogTitle className="text-white text-lg font-semibold">
-                        Cari Koin
+                        Search
                     </DialogTitle>
 
                     <form action={formAction} className="pt-4 border-b border-white/10">
@@ -51,7 +54,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                             )}
                             <Input
                                 name="query"
-                                placeholder="Cari aset lalu tekan Enter..."
+                                placeholder="Cari asset lalu tekan Enter..."
                                 autoComplete="off"
                                 className="h-10 pl-7 bg-transparent border-none focus-visible:ring-0 text-white text-base placeholder:text-zinc-500 font-medium"
                             />
@@ -63,7 +66,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
 
                     {state.initial && !isPending && (
                         <p className="px-3 pb-2 text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">
-                            Rekomendasi aset
+                            Recommended Assets
                         </p>
                     )}
 
@@ -74,7 +77,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                     {displayCoins.length > 0 ? (
                         displayCoins.map((coin: any) => (
                             <Link
-                                onClick={() => setOpen(false)} 
+                                onClick={() => setOpen(false)}
                                 href={`/cryptocurrencies/${coin.id}`}
                                 key={coin.id}
                                 className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 cursor-pointer group transition-all"
@@ -83,7 +86,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                                 <div className="flex items-center gap-3">
                                     <img src={coin.image || coin.thumb} alt={coin.name} className="w-8 h-8 rounded-full bg-zinc-800" />
                                     <div className="flex flex-col leading-none">
-                                        <span className="text-sm font-bold text-white ">
+                                        <span className="text-sm font-bold text-white group-hover:text-blue-600">
                                             {coin.name}
                                         </span>
                                         <span className="text-[10px] text-zinc-500 uppercase font-black tracking-tighter">
@@ -107,13 +110,14 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                     )}
                 </div>
 
-            <div className="px-5 py-3 border-t border-white/10 flex  items-center text-[11px] text-zinc-500">
-                <span>Nirmala Finance</span>
-            </div>
+                <div className="px-5 py-3 border-t border-white/10 flex justify-between items-center text-[11px] text-zinc-500">
+                    <span>Nirmala Finance</span>
+                    <span>ESC to close</span>
+                </div>
 
-        </DialogContent>
+            </DialogContent>
         </Dialog >
     )
 }
 
-export default SearchButton
+export default BottomBarSearch

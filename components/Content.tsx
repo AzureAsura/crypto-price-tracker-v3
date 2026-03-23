@@ -14,16 +14,14 @@ const Content = ({ data, trendingCoins, coins }: any) => {
     <div className="border-t border-white/10 min-h-screen text-white py-16">
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
-
 
           <div className="md:col-span-4 flex flex-col gap-4">
 
             <div className="card p-6 rounded-xl">
               <div className="flex justify-between items-center pb-4 border-b border-gray-600 mb-6">
                 <h2 className="text-xl font-black text-white tracking-tight uppercase">
-                  Market Cap
+                  Kapitalisasi Pasar
                 </h2>
               </div>
 
@@ -31,7 +29,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
               <div className="flex justify-between items-end mt-2 px-1">
                 <div className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">
-                  Performance 7D
+                  PERFORMA 7 HARI
                 </div>
 
                 <div className={clsx(
@@ -47,7 +45,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
             <div className="p-6 rounded-xl card flex-grow flex flex-col">
               <div className="flex justify-between items-center pb-4 border-b border-gray-600 ">
                 <h2 className="text-xl font-black text-white tracking-tight uppercase">
-                  Trending Coins
+                  Sedang tren
                 </h2>
               </div>
 
@@ -82,8 +80,8 @@ const Content = ({ data, trendingCoins, coins }: any) => {
                 })}
               </div>
 
-              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors text-center">
-                View All Trending
+              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors text-center uppercase">
+                selengkapnya
               </Link>
             </div>
 
@@ -93,9 +91,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
             <div className="rounded-xl card overflow-hidden shadow-sm h-full flex flex-col">
 
               <div className="p-6 flex justify-between items-center border-b border-gray-600">
-                <h3 className="text-white font-black text-xl uppercase tracking-tight">Market Overview</h3>
+                <h3 className="text-white font-black text-xl uppercase tracking-tight">Ringkasan Pasar</h3>
                 <Link href={'/cryptocurrencies'} className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
-                  SEE ALL COINS <ChevronRight size={15} />
+                  LIHAT SEMUA COIN <ChevronRight size={15} />
                 </Link>
               </div>
 
@@ -112,9 +110,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
             <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
-                  <h2 className="text-xl font-black text-white tracking-tight uppercase">Top Exchanges</h2>
-                  <button className="group flex text-start items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
-                    ALL EXCHANGE <ChevronRight size={15} />
+                  <h2 className="text-xl font-black text-white tracking-tight uppercase">Bursa teratas</h2>
+                  <button className="group flex text-start items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all uppercase">
+                    Lihat Selengkapnya <ChevronRight size={15} />
                   </button>
                 </div>
 
@@ -145,7 +143,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
           <div className="lg:col-span-5">
             <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
-                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Global Discussion</h2>
+                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">DISKUSI GLOBAL</h2>
                 <div className="space-y-6">
                   {discussions.map((chat, index) => (
                     <div key={index} className="flex gap-4 items-start">
@@ -165,7 +163,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
               </div>
 
               <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
-                Join the Discussion
+                BERGABUNG
               </button>
             </div>
           </div>

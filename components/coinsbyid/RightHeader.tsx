@@ -9,11 +9,11 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
 
                 <div className="flex items-center justify-between pb-4 border-b border-gray-600 mb-6">
                     <h2 className="text-xl font-black text-white tracking-tight uppercase">
-                        About {name}
+                        TENTANG {name}
                     </h2>
                     {genesis_date && (
                         <div className="flex flex-col items-end leading-none">
-                            <span className="text-[9px] font-black text-white uppercase mb-0.5">Genesis Date</span>
+                            <span className="text-[9px] font-black text-white uppercase mb-0.5">TANGGAL GENESIS</span>
                             <span className="text-[11px] font-black text-zinc-400 uppercase">{genesis_date}</span>
                         </div>
                     )}
@@ -26,7 +26,7 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
                     />
                 ) : (
                     <div className="flex flex-col items-center justify-center py-10 border border-dashed border-gray-600 rounded-xl">
-                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">No Asset Description Available</span>
+                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Data deskripsi aset tidak tersedia</span>
                     </div>
                 )}
 
@@ -34,12 +34,12 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
 
             <div className="card p-6 rounded-xl shadow-sm">
                 <h3 className="text-white font-black text-sm uppercase tracking-tight mb-4 border-b border-gray-600 pb-2">
-                    Official Links
+                    Tautan Resmi
                 </h3>
                 <div className="flex flex-wrap gap-2">
                     {links?.homepage[0] && (
                         <a href={links.homepage[0]} target="_blank" className="flex items-center gap-2 px-3 py-2 bg-white/5 border border-gray-600 rounded-lg text-xs font-bold text-white w-full">
-                            <Globe size={14} className="text-blue-500" /> Official Website
+                            <Globe size={14} className="text-blue-500" /> Situs Resmi
                         </a>
                     )}
                     {links?.twitter_screen_name && (
@@ -59,7 +59,7 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
                     )}
                     {links?.subreddit_url && (
                         <a href={links.subreddit_url} target="_blank" className="flex items-center gap-2 px-3 py-2 bg-white/5 border border-gray-600 rounded-lg text-xs font-bold text-white w-full">
-                            <span className="text-red-500 font-bold">r/</span> Reddit Community
+                            <span className="text-red-500 font-bold">r/</span> Komunitas Reddit
                         </a>
                     )}
                 </div>
@@ -68,7 +68,7 @@ const RightHeader = ({ description, links, categories, name, genesis_date }: any
             {categories && (
                 <div className="card p-6 rounded-xl  shadow-sm">
                     <h3 className="text-white font-black text-sm uppercase tracking-tight mb-4 border-b border-gray-600 pb-2">
-                        Tags & Categories
+                        Kategori & Label
                     </h3>
                     <div className="flex flex-wrap gap-2">
                         {categories.slice(0, 8).map((cat: string, i: number) => (

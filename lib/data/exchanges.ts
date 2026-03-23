@@ -1,9 +1,9 @@
 'use server'
 
 
-export const getAllExchangesData = async () => {
+export const getAllExchangesData = async (page: Number) => {
     const res = await fetch(
-        'https://api.coingecko.com/api/v3/exchanges?per_page=50&page=1',
+        `https://api.coingecko.com/api/v3/exchanges?per_page=50&page=${page}`,
         {
             headers: {
                 "x-cg-demo-api-key": process.env.COINGECKO_API as string,

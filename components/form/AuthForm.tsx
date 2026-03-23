@@ -1,10 +1,12 @@
 'use client'
 
 import { registerFunction, signInFunction } from "@/lib/actions/auth";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from 'sonner'
+import { useRouter } from "next/navigation";
 
 interface inputProps {
     label: string;
@@ -60,30 +62,35 @@ const GlassInput = ({ label, type, name, placeholder, required }: inputProps) =>
 const AuthForm = () => {
 
     const [isRegister, setIsRegister] = useState(false);
-    const [signInState, signInFormAction, signInIsPending] = useActionState(signInFunction, null)
+
     const [registerState, registerFormAction, registerIsPending] = useActionState(registerFunction, null)
 
-    const errorMessage = isRegister ? registerState?.message : signInState?.message;
+    useEffect(() => {
+        if (registerState?.message) {
+            if (registerState.error || !registerState.success) {
+                toast.error(registerState.message)
+            } else {
+                toast.success(registerState.message)
+            }
+        }
+    }, [registerState])
+
+    const [signInState, signInFormAction, signInIsPending] = useActionState(signInFunction, null)
+
+
+    useEffect(() => {
+        if (signInState?.message) {
+            if (signInState.success === false || signInState.error) {
+                toast.error(signInState.message)
+            } else {
+                toast.success(signInState.message)
+            }
+        }
+    }, [signInState])
 
 
     const formPanel = (
         <div className="flex flex-col justify-center h-full p-8 lg:p-10">
-
-            <AnimatePresence mode="wait">
-                {errorMessage && (
-                    <motion.div
-                        key={errorMessage} 
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden" 
-                    >
-                        <p className="text-red-400 text-[12px] pb-2">
-                            {errorMessage}
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             <motion.div
                 key={isRegister ? "reg-header" : "sign-header"}
@@ -107,7 +114,7 @@ const AuthForm = () => {
                 <AnimatePresence mode="popLayout">
                     {isRegister && (
                         <>
-                            <GlassInput key="name" label="Nama Lengkap" type="text" name="name" placeholder="Made Paramasura" required />
+                            <GlassInput key="name" label="Nama Lengkap" type="text" name="name" placeholder="John Doe" required />
                             {isRegister && registerState?.error?.name && (
                                 <p className="text-[10px] text-red-400 ml-1 mt-1 font-medium">
                                     {registerState.error.name}
@@ -168,14 +175,14 @@ const AuthForm = () => {
                 <div className="absolute inset-0 flex items-center">
                     <span className="w-full" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
                 </div>
-                <div className="relative flex justify-center text-xs uppercase">
+                {/* <div className="relative flex justify-center text-xs uppercase">
                     <span className="px-3 text-white/30" style={{ background: "transparent" }}>
                         Atau lanjut dengan
                     </span>
-                </div>
+                </div> */}
             </div>
 
-            <div className="flex gap-3">
+            {/* <div className="flex gap-3">
                 {["Google", "GitHub"].map((provider) => (
                     <motion.button
                         key={provider}
@@ -196,7 +203,7 @@ const AuthForm = () => {
                         <span>{provider}</span>
                     </motion.button>
                 ))}
-            </div>
+            </div> */}
 
             <div className="text-center mt-8">
                 <p className="text-sm text-white/40">

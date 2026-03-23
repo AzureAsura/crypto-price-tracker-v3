@@ -5,7 +5,7 @@ import { newsItems } from '@/constants'
 const NewsPage = () => {
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white">
 
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto pt-28 pb-20">
 
@@ -18,7 +18,7 @@ const NewsPage = () => {
         </p>
       </div>
 
-      <section className="bg-black">
+      <section className="">
         <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
 

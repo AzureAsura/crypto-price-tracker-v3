@@ -46,7 +46,7 @@ const ChartById = ({ coinId }: { coinId: string }) => {
           { signal: controller.signal }
         );
 
-        if (!response.ok) throw new Error("Kena limit nih!");
+        if (!response.ok) throw new Error("Error");
 
         const result = await response.json();
         const rawData = debouncedMetric === 'Price' ? result.prices : result.market_caps;
@@ -127,10 +127,10 @@ const ChartById = ({ coinId }: { coinId: string }) => {
         {!isLoading && (chartData.length === 0 || isError) ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center border-2 border-dashed border-zinc-800 rounded-xl bg-zinc-900/20">
             <p className="text-[10px] md:text-xs font-black text-zinc-500 uppercase tracking-[0.2em]">
-              DATA STREAM UNAVAILABLE
+              DATA TIDAK TERSEDIA
             </p>
             <p className="text-[9px] text-zinc-600 mt-1 uppercase font-bold italic">
-              {debouncedTimeframe} • PLEASE REFRESH IN A MOMENT
+              {debouncedTimeframe} • COBA LAGI NANTI
             </p>
           </div>
         ) : (

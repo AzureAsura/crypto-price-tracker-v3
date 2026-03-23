@@ -11,10 +11,10 @@ import { auth } from '@/auth'
 
 
 const navLink = [
-  { name: 'Cryptocurrencies', href: '/cryptocurrencies' },
-  { name: 'Exchanges', href: '/exchanges' },
+  { name: 'Koin', href: '/cryptocurrencies' },
+  { name: 'Bursa', href: '/exchanges' },
   { name: 'Platform', href: '/platform' },
-  { name: 'News', href: '/news' }
+  { name: 'Berita', href: '/news' }
 ]
 
 interface ProfileData {
@@ -68,7 +68,7 @@ const Navbar = async ({ coins, userData }: { coins: any[], userData: ProfileData
             <Link
               href="https://github.com/made-paramasura"
               target="_blank"
-              className="p-2 md:p-2.5 rounded-lg card-dark text-white transition-all active:scale-95 group shadow-sm"
+              className="p-2 md:p-2.5 rounded-lg bg-[#030f1f] text-white transition-all active:scale-95 group shadow-sm"
             >
               <Github
                 size={20}

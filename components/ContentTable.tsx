@@ -21,19 +21,19 @@ const ContentTable = ({ coins }: any) => {
           <TableHeader className="">
             <TableRow className="hover:bg-transparent border-none">
               <TableHead className="sticky left-0 z-20 min-w-[140px] pl-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                Asset Name
+                NAMA ASET
               </TableHead>
               <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                Price
+                HARGA
               </TableHead>
               <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                1h %
+                1j %
               </TableHead>
               <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                24h %
+                24j %
               </TableHead>
               <TableHead className="text-right px-4 text-[10px] tracking-widest uppercase font-bold text-white pr-6 border-b border-gray-600">
-                Market Cap
+                Kapitalisasi pasar
               </TableHead>
             </TableRow>
           </TableHeader>

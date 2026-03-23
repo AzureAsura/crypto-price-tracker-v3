@@ -14,35 +14,35 @@ const page = async () => {
   const data = await getAssetPlatforms()
 
   return (
-    <div className="bg-black min-h-screen">
+    <div className="min-h-screen">
 
      <PlatformHeader/>
 
       <div className="overflow-hidden">
-        <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto">
-          <Table className="min-w-[500px] border-t border-gray-600 w-full border-separate border-spacing-0">
+        <div className="overflow-x-auto custom-scrollbar w-[95vw] mx-auto border border-gray-600 rounded-2xl">
+          <Table className="min-w-[500px] w-full border-separate border-spacing-0">
 
-            <TableHeader className="bg-[#0a0a0a]">
+            <TableHeader className="bg-[#030f1f]">
               <TableRow className="hover:bg-transparent border-none">
 
-                <TableHead className="sticky left-0 z-30 bg-[#0a0a0a] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                <TableHead className="sticky left-0 z-30 bg-[#030f1f] w-[50px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
                   #
                 </TableHead>
 
-                <TableHead className="sticky left-[43px] z-20 bg-[#0a0a0a] min-w-[160px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                  Network Name
+                <TableHead className="sticky left-[43px] z-20 bg-[#030f1f] min-w-[160px] pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
+                  Nama Jaringan
                 </TableHead>
 
                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                  Short Name
+                  Nama
                 </TableHead>
 
                 <TableHead className="text-right pl-4 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                  Native Coin
+                  koin jaringan
                 </TableHead>
 
                 <TableHead className="text-right pl-4 pr-6 text-[12px] tracking-widest uppercase font-bold text-white border-b border-gray-600">
-                  Chain ID
+                  id jaringan
                 </TableHead>
 
               </TableRow>
@@ -52,14 +52,14 @@ const page = async () => {
               {data?.map((platform: any, index: number) => (
                 <TableRow
                   key={platform.id}
-                  className="group hover:bg-[#141414] transition-colors cursor-pointer"
+                  className="group hover:bg-[#1E1E1E] transition-colors bg-[#030f1f]"
                 >
 
-                  <TableCell className="sticky left-0 z-10 bg-black py-4 pl-4 group-hover:bg-[#141414] transition-colors border-b border-white/10 w-[50px]">
+                  <TableCell className="sticky left-0 z-10 bg-[#030f1f] py-4 pl-4 group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10 w-[50px]">
                     <span className="font-bold text-white text-md">{index + 1}</span>
                   </TableCell>
 
-                  <TableCell className="sticky left-[43px] z-10 py-4 pl-4 bg-black group-hover:bg-[#141414] transition-colors border-b border-white/10 !whitespace-normal min-w-[160px] max-w-[180px]">
+                  <TableCell className="sticky left-[43px] z-10 py-4 pl-4 bg-[#030f1f] group-hover:bg-[#1E1E1E] transition-colors border-b border-white/10 !whitespace-normal min-w-[160px] max-w-[180px]">
                     <div className="flex items-center gap-2 md:gap-3 min-w-0">
                       <img
                         src={platform.image?.large || '/placeholder-chain.png'}

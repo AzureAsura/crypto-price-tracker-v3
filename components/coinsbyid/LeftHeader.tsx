@@ -16,11 +16,11 @@ const LeftHeader = ({ data }: any) => {
             value: safeLocale(data.market_cap),
         },
         {
-            label: "VOL 24H",
+            label: "Volume 24j",
             value: safeLocale(data.total_volume),
         },
         {
-            label: "SUPPLY",
+            label: "Pasokan",
             value: safeLocale(data.circulating_supply),
         },
     ]
@@ -38,15 +38,15 @@ const LeftHeader = ({ data }: any) => {
 
     const priceRange = [
         {
-            label: "24h Low",
+            label: "Terendah 24j",
             value: formatCompact(data.low_24h),
         },
         {
-            label: "24h High",
+            label: "Tertinggi 24j",
             value: formatCompact(data.high_24h),
         },
         {
-            label: "All Time High",
+            label: "Harga Tertinggi",
             value: formatCompact(data.ath),
         },
     ]
@@ -72,7 +72,7 @@ const LeftHeader = ({ data }: any) => {
                             </h1>
 
                             <p className="text-xs md:text-sm font-semibold text-zinc-500 tracking-wide mt-1">
-                                Blockchain Ecosystem • Rank #{data.market_cap_rank}
+                                Ekosistem Blockchain • Peringkat #{data.market_cap_rank}
                             </p>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ const LeftHeader = ({ data }: any) => {
                             </div>
 
                             <span className="text-[11px] text-zinc-400 font-semibold uppercase tracking-wider">
-                                Last 24 Hours
+                                24 Jam Terakhir
                             </span>
                         </div>
                     </div>

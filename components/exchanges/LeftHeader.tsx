@@ -3,7 +3,6 @@ import React from 'react'
 const LeftHeader = ({ data }: any) => {
     if (!data) return null;
 
-    console.log(data)
 
     const mainTicker = data?.tickers?.[0];
 
@@ -14,22 +13,21 @@ const LeftHeader = ({ data }: any) => {
 
     const mainStats = [
         {
-            label: "TOP PAIR VOL",
+            label: "VOL PASANGAN TERATAS",
             value: mainTicker?.volume ? mainTicker.volume.toLocaleString('id-ID', { maximumFractionDigits: 0 }) : "---",
         },
         {
-            label: "TRUST RANK",
+            label: "TINGKAT KEPERCAYAAN",
             value: `#${data.trust_score_rank || '---'}`,
         },
         {
-            label: "ACTIVE PAIRS",
+            label: "PASANGAN AKTIF",
             value: data.tickers?.length || "---",
         },
     ]
 
     return (
         <div className="card rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-
 
             <div className="flex flex-col gap-4 w-full relative z-10">
                 <div className="flex items-center justify-between w-full">
@@ -46,7 +44,7 @@ const LeftHeader = ({ data }: any) => {
                                 </span>
                             </h1>
                             <p className="text-xs md:text-sm font-semibold text-zinc-500 tracking-wide mt-1 uppercase">
-                                {data.country || 'Global'} • Established {data.year_established || 'N/A'}
+                                {data.country || 'Global'} • Tahun Berdiri {data.year_established || 'N/A'}
                             </p>
                         </div>
                     </div>
@@ -59,7 +57,7 @@ const LeftHeader = ({ data }: any) => {
 
                         <div className="space-y-1">
                             <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-bold">
-                                24h Trading Volume
+                                Volume Trading 24j
                             </span>
                             <div className="flex items-baseline gap-3">
                                 <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white leading-none">
@@ -74,10 +72,10 @@ const LeftHeader = ({ data }: any) => {
 
                         <div className="flex items-center gap-3">
                             <div className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs md:text-sm font-bold bg-green-500/10 text-green-400 border border-green-500/20">
-                                TRUST SCORE: {data.trust_score}/10
+                                TINGKAT KEPERCAYAAN: {data.trust_score}/10
                             </div>
                             <span className="text-[11px] text-zinc-400 font-semibold uppercase tracking-wider">
-                                Verified Exchange
+                                bursa Terverifikasi
                             </span>
                         </div>
                     </div>
@@ -85,7 +83,7 @@ const LeftHeader = ({ data }: any) => {
                     <div className="grid grid-cols-1 lg:pl-10 lg:border-l lg:border-zinc-600">
                         <div className="flex flex-col gap-1">
                             <span className="text-[10px] tracking-widest text-zinc-500 uppercase font-semibold">
-                                Spread (Avg)
+                                SELISIH HARGA (RATA-RATA)
                             </span>
                             <span className="text-base md:text-lg text-white font-bold tracking-tight">
                                 {mainTicker?.bid_ask_spread_percentage?.toFixed(4) || '0.00'}%

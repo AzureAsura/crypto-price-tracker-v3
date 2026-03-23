@@ -22,12 +22,12 @@ export default function PlatformHeader() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-10 pt-24 px-4 md:px-0 md:w-[95vw] mx-auto">
 
-            <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-center h-full shadow-2xl transition-all hover:border-zinc-500">
+            <div className="card rounded-2xl p-6 flex flex-col justify-center h-full shadow-2xl transition-all hover:border-zinc-500">
                 <div className="space-y-4">
 
                     <div className="flex items-center gap-2 text-xs font-bold text-zinc-500 uppercase tracking-widest">
                         <Layers size={14} className="text-blue-500" />
-                        Asset Platforms
+                        Platform Aset
                     </div>
 
                     <h1 className="text-2xl md:text-3xl font-black uppercase text-white tracking-tighter leading-tight">
@@ -42,7 +42,7 @@ export default function PlatformHeader() {
             </div>
 
 
-            <div className="bg-[#1a1a1a] border border-gray-600 rounded-2xl p-6 flex flex-col justify-between h-full min-h-[180px] shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-500">
+            <div className="card rounded-2xl p-6 flex flex-col justify-between h-full min-h-[180px] shadow-2xl relative overflow-hidden group transition-all hover:border-zinc-500">
 
                 <div className="flex justify-between items-start relative z-10">
 

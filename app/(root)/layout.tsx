@@ -25,7 +25,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
     <div>
       <Navbar coins={coins} userData={userData as any} />
       {children}
-      <BottomBar />
+      <BottomBar coins={coins} />
       <Footer />
     </div>
   )

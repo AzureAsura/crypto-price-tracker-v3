@@ -8,8 +8,10 @@ import { signIn } from "@/auth"
 import { AuthError } from "next-auth"
 
 
-export const registerFunction = async(prevState: any, formData: FormData) => {
-    
+export const registerFunction = async (prevState: any, formData: FormData) => {
+
+    let isSuccess = false;
+
     const validatedData = registerValidation.safeParse(Object.fromEntries(formData.entries()))
 
     if (!validatedData.success) {
@@ -30,19 +32,25 @@ export const registerFunction = async(prevState: any, formData: FormData) => {
             }
         })
 
-        
-    } catch (error) {
-        return {message: "Failed to register user"}
-    }
+        return {
+            success: true,
+            message: "Pendaftaran berhasil! Silakan masuk.",
+        }
 
-    redirect('/auth')
+
+    } catch (error: any) {
+        if (error.code === 'P2002') {
+            return { message: "Email sudah terdaftar. Gunakan email lain." }
+        }
+        return { message: "Gagal mendaftarkan pengguna. Silakan coba lagi nanti." }
+    }
 
 
 }
 
 
-export const signInFunction = async(prevState: unknown, formData: FormData) => {
-    
+export const signInFunction = async (prevState: unknown, formData: FormData) => {
+
     const validatedData = signInValidation.safeParse(Object.fromEntries(formData.entries()))
 
     if (!validatedData.success) {
@@ -54,14 +62,20 @@ export const signInFunction = async(prevState: unknown, formData: FormData) => {
     const { email, password } = validatedData.data
 
     try {
-        await signIn("credentials", { email, password , redirectTo: '/'})
+        await signIn("credentials", { email, password, redirectTo: '/' })
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
-                    return {message: 'Invalid credentials'}            
+                    return {
+                        success: false,
+                        message: 'Invalid credentials'
+                    }
                 default:
-                    return { message: 'Something went wrong'}
+                    return {
+                        success: false,
+                        message: 'Something went wrong'
+                    }
             }
         }
         throw error

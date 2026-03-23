@@ -24,9 +24,9 @@ const ExchangesData = ({ data }: any) => {
                     <div className="lg:col-span-4 flex flex-col gap-4 lg:sticky lg:top-24 h-fit">
                         <RightHeader data={data} />
 
-                        <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
+                        {/* <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
                             <div>
-                                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Global Discussion</h2>
+                                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">Glo</h2>
                                 <div className="space-y-6">
                                     {discussions.map((chat, index) => (
                                         <div key={index} className="flex gap-4 items-start">
@@ -48,7 +48,7 @@ const ExchangesData = ({ data }: any) => {
                             <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
                                 Join the Discussion
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>
