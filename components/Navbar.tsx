@@ -66,7 +66,7 @@ const Navbar = async ({ coins, userData }: { coins: any[], userData: ProfileData
 
           <div className="flex items-center gap-2">
             <Link
-              href="https://github.com/made-paramasura"
+              href="https://github.com/AzureAsura/crypto-price-tracker-v3"
               target="_blank"
               className="p-2 md:p-2.5 rounded-lg bg-[#030f1f] text-white transition-all active:scale-95 group shadow-sm"
             >
@@ -77,7 +77,7 @@ const Navbar = async ({ coins, userData }: { coins: any[], userData: ProfileData
             </Link>
 
             {session ? (
-              <Link href={'/profile'} className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/5">
+              <Link href={'/profile'} className="flex items-center gap-3 px-1.5 md:px-3 py-1.5 rounded-full bg-white/5">
                 <div className="hidden md:flex flex-col items-end leading-tight">
                   <span className="text-[12px] font-bold text-white truncate max-w-[100px]">
                     {userData.name}
@@ -99,9 +99,9 @@ const Navbar = async ({ coins, userData }: { coins: any[], userData: ProfileData
             ) : (
               <Link
                 href={'/auth'}
-                className="bg-gradient-to-r from-blue-600 via-blue-800 to-blue-950 px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap"
+                className="btn-color btn-color:hover px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-bold text-[12px] md:text-[14px] text-white hover:brightness-110 transition-all shadow-lg shadow-blue-500/20 active:scale-95 whitespace-nowrap"
               >
-                Get started
+                Mulai Sekarang
               </Link>
             )}
           </div>

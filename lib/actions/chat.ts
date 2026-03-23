@@ -19,7 +19,7 @@ export const globalFunction = async (prevState: any, formData: FormData) => {
     const validatedData = chatValidation.safeParse(Object.fromEntries(formData.entries()))
 
     if (!validatedData.success) {
-        return { error: validatedData.error.flatten().fieldErrors }
+        return { message: "Pesan tidak boleh kosong." }
     }
 
     try {
@@ -54,7 +54,7 @@ export const coinFunction = async (id: string, prevState: any, formData: FormDat
     const validatedData = chatValidation.safeParse(Object.fromEntries(formData.entries()))
 
     if (!validatedData.success) {
-        return { error: validatedData.error.flatten().fieldErrors }
+        return { message: "Pesan tidak boleh kosong." }
     }
 
     try {
@@ -159,6 +159,37 @@ export const getChatByCoinId = async (id: string) => {
             orderBy: {
                 createdAt: 'asc'
             }
+        })
+
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const get4GlobalChat = async () => {
+
+
+    const coinId = 'global'
+
+    try {
+        const data = await prisma.chat.findMany({
+            where: {
+                coinId
+            },
+            include: {
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        image: true
+                    }
+                }
+            },
+            orderBy: {
+                createdAt: "asc"
+            },
+            take: 4
         })
 
         return data

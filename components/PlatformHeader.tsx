@@ -31,11 +31,11 @@ export default function PlatformHeader() {
                     </div>
 
                     <h1 className="text-2xl md:text-3xl font-black uppercase text-white tracking-tighter leading-tight">
-                        Blockchain Networks & Ecosystems
+                        Jaringan & Ekosistem Blockchain
                     </h1>
 
                     <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl">
-                        Asset platforms are blockchain networks where digital tokens are created and operated. These platforms, such as Ethereum or Binance Smart Chain, enable smart contracts, decentralized applications, and token ecosystems that power the broader crypto industry.
+                        Platform aset merupakan jaringan blockchain tempat aset digital dibuat dan dijalankan. Platform seperti Ethereum atau Binance Smart Chain memungkinkan penggunaan smart contract, aplikasi terdesentralisasi, serta ekosistem token yang mendukung perkembangan industri kripto secara luas.
                     </p>
 
                 </div>
@@ -49,7 +49,7 @@ export default function PlatformHeader() {
                     <div className="space-y-1">
                         <div className="flex items-center gap-1.5 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
                             <Network size={15} className="text-blue-500" />
-                            Active Blockchain Networks
+                            Jaringan Blockchain yang Aktif
                         </div>
 
                         <h2 className="text-3xl font-black text-white tracking-tighter">
@@ -60,7 +60,7 @@ export default function PlatformHeader() {
 
                     <div className="relative z-10">
                         <span className="text-[10px] font-black text-blue-500 bg-blue-500/10 px-2 py-1 rounded-sm border border-blue-500/20">
-                            Rapid expansion
+                           Perkembangan Pesat
                         </span>
                     </div>
 

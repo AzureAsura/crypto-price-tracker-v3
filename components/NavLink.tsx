@@ -1,109 +1,145 @@
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from 'next/link'
-import { ChevronDown, BarChart3, TrendingUp, Newspaper, Info } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 const navLink2 = [
-    {name: 'Crypto News', href: '/news', description: 'Berita terkini seputar dunia blockchain dan teknologi Web3 secara global.'},
-    {name: 'About Us', href: '/about', description: 'Pelajari lebih lanjut tentang visi, misi, dan tujuan platform kami.'},
-    {name: 'Global Discussion', href: '/discussion',  description: 'Coba fitur Global Discussion kami'},
+    {
+        name: 'Berita',
+        href: '/news',
+        description: 'Berita terkini seputar dunia blockchain dan teknologi Web3 secara global.',
+        accent: 'from-sky-500/20 to-blue-500/10',
+        dot: 'bg-sky-400',
+    },
+    {
+        name: 'Tentang Kami',
+        href: '/about',
+        description: 'Pelajari lebih lanjut tentang visi, misi, dan tujuan platform kami.',
+        accent: 'from-violet-500/20 to-purple-500/10',
+        dot: 'bg-violet-400',
+    },
+    {
+        name: 'Diskusi Global',
+        href: '/discussion',
+        description: 'Coba fitur Diskusi Global kami dan bergabung dengan komunitas.',
+        accent: 'from-emerald-500/20 to-teal-500/10',
+        dot: 'bg-emerald-400',
+    },
 ]
+
+const coinLinks = [
+    {
+        name: 'Kapitalisasi Pasar',
+        href: '/cryptocurrencies',
+        description: 'Peringkat aset crypto teratas berdasarkan kapitalisasi pasar global dan performa terkini.',
+        accent: 'from-blue-500/20 to-cyan-500/10',
+        dot: 'bg-blue-400',
+    },
+    {
+        name: 'Sedang Tren',
+        href: '/trending',
+        description: 'Koin yang sedang naik daun dan paling banyak dicari oleh pengguna hari ini.',
+        accent: 'from-orange-500/20 to-amber-500/10',
+        dot: 'bg-orange-400',
+    },
+]
+
+const dropdownContentClass = `
+    bg-[#030f1f] border border-white/10 text-white p-3 rounded-2xl mt-3
+    shadow-[0_24px_80px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.04)]
+    backdrop-blur-xl
+`
+
+const cardClass = `
+    group/card relative flex flex-col gap-1.5 p-4 rounded-xl
+    border border-white/[0.06] bg-white/[0.03]
+    hover:bg-white/[0.06] hover:border-white/[0.12]
+    transition-all duration-200 overflow-hidden
+`
 
 const NavLink = () => {
     return (
         <>
-
             <DropdownMenu>
-                <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition cursor-pointer text-[14px] font-semibold">
+                <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer text-[13.5px] font-semibold tracking-tight outline-none">
                     Koin
-                    <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform text-gray-500" />
+                    <ChevronDown
+                        size={13}
+                        className="group-data-[state=open]:rotate-180 transition-transform duration-200 text-gray-500 group-hover:text-gray-300"
+                    />
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent
                     align="start"
-                    className="w-[500px] bg-zinc-900 border border-zinc-700/50 text-white p-4 rounded-2xl mt-4 shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+                    className={`w-[460px] ${dropdownContentClass}`}
                 >
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
+                        {coinLinks.map((item) => (
+                            <Link key={item.name} href={item.href} className={cardClass}>
+                                <div className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 rounded-xl`} />
 
-                        <Link
-                            href="/cryptocurrencies"
-                            className="flex flex-col gap-1 p-4 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
-                        >
-                            <div className="flex items-center gap-2 text-blue-400">
-                                <span className="font-bold text-sm text-white">
-                                    Kapitalisasi Pasar
-                                </span>
-                            </div>
-
-                            <p className="text-xs text-gray-400 leading-relaxed whitespace-normal break-words">
-                                Peringkat aset crypto teratas berdasarkan kapitalisasi pasar global dan performa terkini.
-                            </p>
-                        </Link>
-
-                        <Link
-                            href="/trending"
-                            className="flex flex-col gap-2 p-2 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
-                        >
-                            <div className="flex items-center gap-2 text-orange-400">
-                                <span className="font-bold text-sm text-white">
-                                    Sedang Tren
-                                </span>
-                            </div>
-
-                            <p className="text-xs text-gray-400 leading-relaxed whitespace-normal break-words">
-                                Koin yang sedang naik daun dan paling banyak dicari oleh pengguna hari ini.
-                            </p>
-                        </Link>
-
+                                <div className="relative flex items-center gap-2">
+                                    <span className={`h-1.5 w-1.5 rounded-full ${item.dot} shrink-0`} />
+                                    <span className="font-semibold text-sm text-white">
+                                        {item.name}
+                                    </span>
+                                </div>
+                                <p className="relative text-[11.5px] text-gray-500 leading-relaxed group-hover/card:text-gray-400 transition-colors duration-200">
+                                    {item.description}
+                                </p>
+                            </Link>
+                        ))}
                     </div>
                 </DropdownMenuContent>
             </DropdownMenu>
 
-
-            <Link href="/exchanges" className="text-gray-400 hover:text-white transition-colors text-[14px] font-semibold tracking-tight">
+            <Link
+                href="/exchanges"
+                className="text-gray-400 hover:text-white transition-colors duration-200 text-[13.5px] font-semibold tracking-tight"
+            >
                 Bursa
             </Link>
 
-            <Link href="/platforms" className="text-gray-400 hover:text-white transition-colors text-[14px] font-semibold tracking-tight">
+            <Link
+                href="/platforms"
+                className="text-gray-400 hover:text-white transition-colors duration-200 text-[13.5px] font-semibold tracking-tight"
+            >
                 Platform
             </Link>
 
             <DropdownMenu>
-                <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition cursor-pointer text-[14px] font-semibold">
+                <DropdownMenuTrigger className="group flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors duration-200 cursor-pointer text-[13.5px] font-semibold tracking-tight outline-none">
                     Lainnya
-                    <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform duration-300 text-gray-500" />
+                    <ChevronDown
+                        size={13}
+                        className="group-data-[state=open]:rotate-180 transition-transform duration-200 text-gray-500 group-hover:text-gray-300"
+                    />
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent
                     align="end"
-                    className="w-[500px] bg-zinc-900 border border-zinc-700/50 text-white p-4 rounded-2xl mt-4 shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+                    className={`w-[460px] ${dropdownContentClass}`}
                 >
-
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                         {navLink2.map((item) => (
-                            <Link
-                            key={item.name}
-                            href={item.href}
-                            className="flex flex-col gap-2 p-4 rounded-xl bg-zinc-800/40 hover:bg-zinc-800/70 transition-all"
-                        >
-                            <div className="flex items-center gap-2 text-green-400">
-                                <span className="font-bold text-sm text-white">
-                                    {item.name}
-                                </span>
-                            </div>
+                            <Link key={item.name} href={item.href} className={cardClass}>
+                                <div className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 rounded-xl`} />
 
-                            <p className="text-xs text-gray-400 leading-relaxed whitespace-normal break-words">
-                                {item.description}
-                            </p>
-                        </Link>
+                                <div className="relative flex items-center gap-2">
+                                    <span className={`h-1.5 w-1.5 rounded-full ${item.dot} shrink-0`} />
+                                    <span className="font-semibold text-sm text-white">
+                                        {item.name}
+                                    </span>
+                                </div>
+                                <p className="relative text-[11.5px] text-gray-500 leading-relaxed group-hover/card:text-gray-400 transition-colors duration-200">
+                                    {item.description}
+                                </p>
+                            </Link>
                         ))}
-
                     </div>
-
                 </DropdownMenuContent>
             </DropdownMenu>
         </>

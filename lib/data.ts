@@ -37,6 +37,7 @@ export const getBtcMarketCap = async () => {
 
 
 export const getCoinById = async (id: string) => {
+
     const apiKey = process.env.COINGECKO_API as string;
     const headers = {
         "x-cg-demo-api-key": apiKey,
@@ -93,6 +94,7 @@ export const getAllCoinsData = async (page: Number) => {
 }
 
 export const getTrendingCoins = async () => {
+    
     const res = await fetch(`https://api.coingecko.com/api/v3/search/trending`, {
         headers: { "x-cg-demo-api-key": process.env.COINGECKO_API as string },
         next: { revalidate: 3600 }

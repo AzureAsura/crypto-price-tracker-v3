@@ -101,7 +101,7 @@ const SearchButton = ({ initialData = [] }: { initialData: any[] }) => {
                         <div className="py-20 text-center flex flex-col items-center gap-2">
                             <Search size={32} className="text-zinc-800" />
                             <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">
-                                {isPending ? 'Searching Blockchain...' : 'Signal Lost / Not Found'}
+                                {isPending ? 'Mencari...' : 'Data tidak di temukan'}
                             </p>
                         </div>
                     )}

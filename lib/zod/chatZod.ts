@@ -1,8 +1,7 @@
-import { coerce, object, string, z } from "zod";
-
+import { object, string } from "zod";
 
 export const chatValidation = object({
-    chat: string().min(1, 'Cannot send an empty chat').max(300, 'message is too long'),
+    chat: string()
+        .min(1, "Pesan tidak boleh kosong")
+        .max(300, "Pesan maksimal 300 karakter"),
 });
-
-

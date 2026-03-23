@@ -10,11 +10,13 @@ export const PUT = async (request: Request) => {
     }
 
     if (file.size > 4000000) {
-        return NextResponse.json({ message: "File size can't be more than 4mb" }, { status: 400 })
+        // return NextResponse.json({ message: "File size can't be more than 4mb" }, { status: 400 })
+        return NextResponse.json({ message: "Ukuran file maksimal 4MB" }, { status: 400 })
     }
 
     if (!file.type.startsWith("image/")) {
-        return NextResponse.json({ message: "File must be an image" }, { status: 400 })
+        // return NextResponse.json({ message: "File must be an image" }, { status: 400 })
+        return NextResponse.json({ message: "File harus berupa gambar" }, { status: 400 })
     }
 
     const blob = await put(file.name, file, {

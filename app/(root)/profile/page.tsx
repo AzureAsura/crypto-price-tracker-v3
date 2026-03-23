@@ -1,27 +1,12 @@
 import { auth } from "@/auth"
 import Image from "next/image"
-import { MessagesSquare, Pencil } from "lucide-react"
+import { signOut } from "@/auth"
 import Link from "next/link"
 import EditProfile from "@/components/profile/EditProfile"
 import { getProfile } from "@/lib/actions/profile"
 import { getChatByUserId } from "@/lib/actions/chat"
 import { redirect } from "next/navigation"
-
-interface ChatItem {
-  id: string
-  coinId: string
-  content: string
-  createdAt: Date
-}
-
-interface ProfileData {
-  id: string
-  name: string | null
-  email: string
-  image: string | null
-  bio: string | null
-  createdAt: Date
-}
+import { LogOut } from "lucide-react"
 
 
 const page = async () => {
@@ -68,8 +53,27 @@ const page = async () => {
         </p>
 
         <EditProfile data={data as any} />
+        <div className="w-full h-px bg-white/10 my-6" />
+
+        <form
+          action={async () => {
+            "use server"
+            await signOut({ redirectTo: '/' })
+          }}
+          className="w-full"
+        >
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 text-red-400 hover:text-red-300 transition-colors text-sm font-semibold cursor-pointer"
+          >
+            <LogOut className="size-4" />
+            Sign Out
+          </button>
+        </form>
 
       </div>
+
+
 
 
       <div className='flex-1 flex flex-col gap-5'>

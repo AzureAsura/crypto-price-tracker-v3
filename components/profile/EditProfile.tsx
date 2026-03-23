@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PutBlobResult } from '@vercel/blob';
 import { editProfile } from '@/lib/actions/profile';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 interface ProfileData {
     id: string;
@@ -51,16 +52,15 @@ const EditProfile = ({ data }: { data: ProfileData }) => {
                 const resData = await response.json();
 
                 if (response.status !== 200) {
-                    setMessage(resData.message);
+                    toast.error(resData.message || "Gagal upload gambar");
                     return;
                 }
 
                 const img = resData as PutBlobResult;
                 setImage(img.url);
+                toast.success("Gambar berhasil diunggah");
             } catch (error) {
-                if (error) {
-                    setMessage("Ukuran maksimal 4mb")
-                }
+                toast.error("Terjadi kesalahan saat upload");
             }
         });
     }
@@ -84,10 +84,15 @@ const EditProfile = ({ data }: { data: ProfileData }) => {
     );
 
     useEffect(() => {
-        if (!isPending && state?.success) {
-            setOpen(false);
+        if (state?.message) {
+            if (state.success) {
+                toast.success(state.message);
+                setOpen(false); 
+            } else {
+                toast.error(state.message);
+            }
         }
-    }, [isPending, state]);
+    }, [state]);
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -169,9 +174,9 @@ const EditProfile = ({ data }: { data: ProfileData }) => {
                         <button
                             type="submit"
                             disabled={isPending || pending}
-                            className="w-full py-2.5 rounded-xl text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 transition-all shadow-lg shadow-blue-500/20"
+                            className="w-full py-2.5 rounded-xl text-sm font-bold text-white btn-color btn-color:hover disabled:opacity-50 transition-all shadow-lg shadow-blue-500/20"
                         >
-                            {isPending ? 'Saving...' : 'Simpan Perubahan'}
+                            {isPending ? 'Menyimpan...' : 'Simpan Perubahan'}
                         </button>
                     </DialogFooter>
                 </form>

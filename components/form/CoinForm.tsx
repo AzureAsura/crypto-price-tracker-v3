@@ -41,7 +41,7 @@ const CoinForm = ({ id, chatData, currentUserId }: { id: string, chatData: any[]
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors cursor-pointer">
+                <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm btn-color btn-color:hover transition-colors cursor-pointer">
                     Bergabung
                 </button>
             </DialogTrigger>

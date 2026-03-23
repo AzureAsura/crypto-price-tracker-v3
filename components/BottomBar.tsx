@@ -8,8 +8,15 @@ import { RiHome5Line, RiHome5Fill } from 'react-icons/ri'
 import { BiBarChartAlt2 } from 'react-icons/bi'
 import { HiOutlineNewspaper, HiNewspaper } from 'react-icons/hi2'
 import { RiMenu3Line } from 'react-icons/ri'
-import { IoSearchOutline } from 'react-icons/io5'
 import BottomBarSearch from './BottomBarSearch'
+import { X } from 'lucide-react'
+
+const bottomBarLink = [
+    {name: 'Bursa', href:'/exchanges'},
+    {name: 'platform', href: '/platforms'},
+    {name: 'DISKUSI', href: '/discussion'},
+    {name: 'tentang kami', href: '/about'},
+]
 
 const BottomBar = ({ coins = [] }: { coins: any[] }) => {
     const pathname = usePathname()
@@ -23,23 +30,51 @@ const BottomBar = ({ coins = [] }: { coins: any[] }) => {
     return (
         <>
             <div className={clsx(
-                'fixed inset-0 z-[110] bg-[#030f1f] transition-all duration-500 ease-in-out lg:hidden',
+                'fixed inset-0 z-[110] bg-[#030f1f] transition-all duration-500 ease-in-out lg:hidden flex flex-col p-7',
                 isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
             )}>
-                {/* Header Menu untuk Close */}
-                <div className='flex justify-end p-6'>
-                    <button onClick={toggleMenu} className='p-2 text-zinc-400 hover:text-white'>
-                        {/* Kamu bisa pakai icon RiCloseLine atau teks Close */}
-                        <p className='text-xs font-bold uppercase tracking-widest'>Close</p>
+                <div className='flex justify-between items-center mb-16'>
+                    <div className='flex flex-col leading-0 items-start group'>
+                        <h2 className="font-[1000] text-4xl tracking-tighter text-white uppercase">
+                            NIRMALA
+                        </h2>
+                        <span className="text-[20px] tracking-[0.4em] font-black text-blue-500 uppercase mt-2">
+                            FINANCE
+                        </span>
+                    </div>
+
+                    <button onClick={toggleMenu} className='w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all'>
+                        <X />
                     </button>
                 </div>
 
-                {/* List Menu Links */}
-                <div className='flex flex-col items-center justify-center gap-8 h-full -mt-20'>
-                    <Link href="/exchanges" onClick={toggleMenu} className='text-3xl font-black hover:text-blue-400 transition-colors'>EXCHANGES</Link>
-                    <Link href="/platforms" onClick={toggleMenu} className='text-3xl font-black hover:text-blue-400 transition-colors'>PLATFORMS</Link>
-                    <Link href="/discussions" onClick={toggleMenu} className='text-3xl font-black hover:text-blue-400 transition-colors'>DISCUSSIONS</Link>
-                    <Link href="/about" onClick={toggleMenu} className='text-3xl font-black hover:text-blue-400 transition-colors'>ABOUT</Link>
+                <nav className='flex flex-col mb-auto'>
+                    {bottomBarLink.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            onClick={toggleMenu}
+                            className='text-5xl uppercase font-black tracking-[-0.05em] text-white'
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+                </nav>
+
+                <div className='pt-8 border-t border-white/5 grid grid-cols-2 gap-8'>
+                    <div className="flex flex-col gap-4">
+                        <span className="text-[10px] tracking-[0.3em] font-bold text-white/30 uppercase">Sosial Media</span>
+                        <Link href="#" className="text-white font-bold text-sm flex items-center gap-2">
+                            Instagram
+                        </Link>
+                    </div>
+                    <div className="flex flex-col gap-4">
+                        <span className="text-[10px] tracking-[0.3em] font-bold text-white/30 uppercase">Kontak</span>
+                        <div className="flex flex-col gap-1">
+                            <p className="text-white font-bold text-sm">hello@nirmala.com</p>
+                            <p className="text-white font-bold text-sm">+62 821-xxxx-xxxx</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -73,7 +108,7 @@ const BottomBar = ({ coins = [] }: { coins: any[] }) => {
                         <p className='text-[9px] font-black uppercase tracking-widest'>Berita</p>
                     </Link>
 
-                    <button 
+                    <button
                         onClick={toggleMenu}
                         className={clsx(
                             'flex flex-col items-center gap-1 p-2 rounded-2xl flex-1 transition-all duration-300',

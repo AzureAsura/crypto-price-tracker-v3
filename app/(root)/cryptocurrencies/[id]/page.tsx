@@ -10,9 +10,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
     const session = await auth()
     const currentUserId = session?.user?.id
 
-    const data = await getCoinById(id)
-
-    const discussions = await getChatByCoinId(id)
+    const [data, discussions] = await Promise.all([
+        getCoinById(id),
+        getChatByCoinId(id),
+      ])
 
 
     return (

@@ -18,7 +18,7 @@ interface inputProps {
 
 
 const ImagePanel = () => (
-    <div className="relative w-full h-full min-h-[600px]">
+    <div className="relative w-full h-full min-h-[550px]">
         <img
             src="/authimg.avif"
             alt=""
@@ -99,10 +99,10 @@ const AuthForm = () => {
                 transition={{ duration: 0.4 }}
                 className="mb-8"
             >
-                <h1 className="text-2xl font-bold text-white mb-1">
+                <h1 className="text-2xl md:text-3xl font-black text-white mb-1">
                     {isRegister ? 'Buat Akun Baru' : 'Selamat Datang Kembali'}
                 </h1>
-                <p className="text-white/40 text-sm">
+                <p className="text-white/40 text-md">
                     {isRegister ? 'Silakan daftar untuk mulai memantau crypto' : 'Masukkan detail akunmu untuk lanjut'}
                 </p>
             </motion.div>
@@ -238,7 +238,7 @@ const AuthForm = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className='grid grid-cols-1 lg:grid-cols-2 min-h-[600px]'
+                        className='grid grid-cols-1 lg:grid-cols-2 min-h-[400px]'
                     >
                         {isRegister ? (
                             <>

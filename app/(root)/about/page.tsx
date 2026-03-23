@@ -10,9 +10,7 @@ const page = async() => {
   
   return (
     <div>
-      <p className='text-white text-9xl'>{session?.user.name}</p>
-      <p className='text-white text-9xl'>{session?.user.email}</p>
-      <p className='text-white text-9xl'>{session?.user.password}</p>
+
     </div>
   )
 }

@@ -27,15 +27,15 @@ export default function ExchangeHeader() {
 
                     <div className="flex items-center gap-2 text-xs font-bold text-zinc-500 uppercase tracking-widest">
                         <Building2 size={14} className="text-blue-500" />
-                        Crypto Exchanges
+                        Bursa Kripso
                     </div>
 
                     <h1 className="text-2xl md:text-3xl font-black uppercase text-white tracking-tighter leading-tight">
-                        Buy, Sell & Trade Digital Assets
+                        Akses untuk Beli dan Jual Aset Digital
                     </h1>
 
                     <p className="text-zinc-400 text-sm leading-relaxed max-w-2xl">
-                        Cryptocurrency exchanges are platforms where users can buy, sell, and trade digital assets like Bitcoin and Ethereum. They provide liquidity, price discovery, and access to global markets, acting as the backbone of the crypto economy.
+                        Platform exchange kripto merupakan tempat di mana pengguna di Indonesia dapat membeli, menjual, dan memperdagangkan aset digital seperti Bitcoin dan Ethereum. Dengan menyediakan likuiditas, transparansi harga, serta akses ke pasar global, exchange menjadi fondasi dalam ekosistem kripto.
                     </p>
 
                 </div>
@@ -49,11 +49,11 @@ export default function ExchangeHeader() {
                     <div className="space-y-1">
                         <div className="flex items-center gap-1.5 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
                             <TrendingUp size={15} className="text-blue-500" />
-                            Indonesia Adoption
+                            Adopsi di Indonesia
                         </div>
 
                         <h2 className="text-3xl font-black text-white tracking-tighter">
-                            19.6M
+                            19.6 JUTA
                         </h2>
 
                     </div>
@@ -61,7 +61,7 @@ export default function ExchangeHeader() {
 
                     <div className="relative z-10">
                         <span className="text-[10px] font-black text-blue-500 bg-blue-500/10 px-2 py-1 rounded-sm border border-blue-500/20">
-                            +47% recovery
+                            +47% Tahun Terakhir
                         </span>
                     </div>
 

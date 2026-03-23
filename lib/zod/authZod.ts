@@ -1,30 +1,35 @@
-import { coerce, object, string, z } from "zod";
-
+import { object, string } from "zod";
 
 export const registerValidation = object({
-    name: string().min(2, "Name must be more than 2 character"),
-    email: string().email("Invalid email"),
+    name: string()
+        .min(2, "Nama minimal harus 2 karakter")
+        .max(70, "Nama maksimal 70 karakter"),
+    email: string()
+        .email("Format email tidak valid"),
     password: string()
-        .min(8, "Password must be more than 8 characters")
-        .max(32, "Password is too long"),
+        .min(8, "Kata sandi minimal 8 karakter")
+        .max(32, "Kata sandi maksimal 32 karakter"),
     cpassword: string()
-        .min(8, "Password must be more than 8 characters")
-        .max(32, "Password is too long"),
-}).refine((data) => data.password == data.cpassword, {
-    message: 'Password does not match',
-    path: ['cpassword']
+        .min(8, "Kata sandi minimal 8 karakter")
+        .max(32, "Kata sandi maksimal 32 karakter"),
+}).refine((data) => data.password === data.cpassword, {
+    message: "Konfirmasi kata sandi tidak cocok",
+    path: ["cpassword"]
 });
-
 
 export const signInValidation = object({
-    email: string().email("Invalid email"),
+    email: string()
+        .email("Format email tidak valid"),
     password: string()
-        .min(8, "Password must be more than 8 characters")
-        .max(32, "Password is too long")
+        .min(8, "Kata sandi minimal 8 karakter")
+        .max(32, "Kata sandi maksimal 32 karakter")
 });
 
-
 export const profileValidation = object({
-    name: string().min(2, 'nama minimal 2 huruf'),
-    bio: string().min(10, 'bio minimal 10 karakter').max(150, 'maximal 150 karakter'),
-})
+    name: string()
+        .min(2, "Nama minimal harus 2 karakter")
+        .max(70, "Nama maksimal 70 karakter"),
+    bio: string()
+        .min(10, "Bio minimal harus 10 karakter")
+        .max(150, "Bio maksimal 150 karakter"),
+});

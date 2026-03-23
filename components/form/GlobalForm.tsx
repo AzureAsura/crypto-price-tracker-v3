@@ -25,7 +25,7 @@ const GlobalForm = () => {
         <div className="pt-3 md:pt-4">
             <form className="relative flex items-center gap-2" action={formAction}>
                 <Input
-                    placeholder="Type..."
+                    placeholder="..."
                     name='chat'
                     className="flex-1 bg-white/5 border-white/10 text-white rounded-xl md:rounded-2xl h-10 md:h-12 px-4 pr-10 text-sm placeholder:text-white/20"
                 />

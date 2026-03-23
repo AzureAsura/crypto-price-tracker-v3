@@ -1,17 +1,16 @@
 
 import { ChevronRight } from 'lucide-react'
 import ContentTable from './ContentTable';
-import { discussions, exchanges } from '@/constants'
+import { globalChat, exchanges } from '@/constants'
 import DemoChart from './DemoChart';
 import Link from 'next/link';
 import clsx from 'clsx';
-
 
 const Content = ({ data, trendingCoins, coins }: any) => {
 
 
   return (
-    <div className="border-t border-white/10 min-h-screen text-white py-16">
+    <div className=" min-h-screen text-white pb-16 md:pt-10">
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
@@ -80,7 +79,7 @@ const Content = ({ data, trendingCoins, coins }: any) => {
                 })}
               </div>
 
-              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors text-center uppercase">
+              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm btn-color btn-color:hover transition-colors text-center uppercase">
                 selengkapnya
               </Link>
             </div>
@@ -90,14 +89,14 @@ const Content = ({ data, trendingCoins, coins }: any) => {
           <div className="md:col-span-8">
             <div className="rounded-xl card overflow-hidden shadow-sm h-full flex flex-col">
 
-              <div className="p-6 flex justify-between items-center border-b border-gray-600">
+              <div className="px-6 py-4 flex justify-between items-center border-b border-gray-600">
                 <h3 className="text-white font-black text-xl uppercase tracking-tight">Ringkasan Pasar</h3>
                 <Link href={'/cryptocurrencies'} className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
                   LIHAT SEMUA COIN <ChevronRight size={15} />
                 </Link>
               </div>
 
-              <ContentTable coins={coins}/>
+              <ContentTable coins={coins} />
             </div>
           </div>
 
@@ -111,28 +110,28 @@ const Content = ({ data, trendingCoins, coins }: any) => {
               <div>
                 <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
                   <h2 className="text-xl font-black text-white tracking-tight uppercase">Bursa teratas</h2>
-                  <button className="group flex text-start items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all uppercase">
+                  <Link href={'/exchanges'} className="group flex text-start items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all uppercase">
                     Lihat Selengkapnya <ChevronRight size={15} />
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="space-y-1">
                   {exchanges.map((item, index) => (
-                    <div key={index} className="flex items-center justify-between py-4 px-2 rounded-xl hover:bg-white/[0.08] transition-all group cursor-pointer">
+                    <Link href={`exchanges/${item.href}`} key={index} className="flex items-center justify-between py-4 px-2 rounded-xl hover:bg-white/[0.08] transition-all group cursor-pointer">
                       <div className="flex items-center gap-5">
                         <img src={item.img} alt="" className="w-12 h-12 object-cover rounded-sm shadow-lg brightness-90 group-hover:brightness-110 transition-all" />
                         <div>
-                          <div className="text-white font-bold text-lg">{item.pair}</div>
+                          <div className="text-white font-bold text-lg">{item.name}</div>
                           <div className="text-gray-500 text-xs font-medium uppercase tracking-wider">Spot Trading</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-mono font-bold text-white">{item.rate}</div>
-                        <div className={`text-sm font-bold ${item.isUp ? 'text-green-400' : 'text-red-400'}`}>
-                          {item.change}
+                        <div className="text-lg uppercase font-black text-white">{item.country}</div>
+                        <div className='text-sm font-bold text-green-400'>
+                          {item.trustScore}
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -143,18 +142,31 @@ const Content = ({ data, trendingCoins, coins }: any) => {
           <div className="lg:col-span-5">
             <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
-                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b  tracking-tight">DISKUSI GLOBAL</h2>
+                <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b tracking-tight">
+                  Diskusi Koin
+                </h2>
+
+
                 <div className="space-y-6">
-                  {discussions.map((chat, index) => (
+                  {globalChat?.map((item: any, index: number) => (
                     <div key={index} className="flex gap-4 items-start">
-                      <img src={chat.avatar} alt="" className="w-10 h-10 rounded-full border border-gray-700" />
+                      <img
+                        src={item.user?.image || '/placeholder.jpg'}
+                        alt=""
+                        className="w-10 h-10 rounded-full border border-gray-700 object-cover"
+                      />
                       <div className="flex-grow">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-white font-bold text-sm">{chat.user}</span>
-                          <span className="text-gray-600 text-[10px]">{chat.time}</span>
+                          <span className="text-white font-bold text-sm">@{item.user?.name}</span>
+                          <span className="text-gray-600 text-[10px]">
+                            {new Date(item.createdAt).toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })}
+                          </span>
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed italic">
-                          "{chat.msg}"
+                          "{item.content}"
                         </p>
                       </div>
                     </div>
@@ -162,9 +174,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
                 </div>
               </div>
 
-              <button className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 transition-colors">
+              <Link href={'/discussion'} className="w-full mt-8 py-3 rounded-xl border border-gray-600 text-white font-bold text-sm btn-color btn-color:hover transition-colors text-center">
                 BERGABUNG
-              </button>
+              </Link>
             </div>
           </div>
 

@@ -12,12 +12,11 @@ export const editProfile = async (id: string, image: string, prevState: any, for
     const session = await auth()
 
     if (!session || !session.user) {
-        return null
+        return { message: "Sesi berakhir. Silakan login kembali." }
     }
 
-
     if (!image) {
-        return { message: 'image is required' }
+        return { message: 'Foto profil wajib diunggah.' }
     }
 
     const validatedData = profileValidation.safeParse(Object.fromEntries(formData.entries()))
@@ -42,11 +41,10 @@ export const editProfile = async (id: string, image: string, prevState: any, for
         })
 
         revalidatePath('/')
-
-        return { success: true }
+        return { success: true, message: "Profil berhasil diperbarui!" }
 
     } catch (error) {
-        console.log(error)
+        return { message: "Gagal memperbarui profil. Coba lagi nanti." }
 
     }
 

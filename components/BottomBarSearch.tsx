@@ -30,10 +30,10 @@ const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <button className='relative flex flex-col items-center gap-1 flex-1 -mt-6'>
-                    <div className='w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-900/60 transition-all'>
+                    <div className='w-14 h-14 rounded-full btn-color btn-color:hover flex items-center justify-center shadow-lg shadow-blue-900/60 transition-all'>
                         <IoSearchOutline size={24} className='text-white' />
                     </div>
-                    <p className='text-[9px] font-black uppercase tracking-widest text-zinc-500'>Search</p>
+                    <p className='text-[9px] font-black uppercase tracking-widest text-zinc-500'>Cari Koin</p>
                 </button>
             </DialogTrigger>
 
@@ -42,7 +42,7 @@ const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
                 <DialogHeader className="px-5 pt-4 border-b border-white/10 relative">
 
                     <DialogTitle className="text-white text-lg font-semibold">
-                        Search
+                        Cari Koin
                     </DialogTitle>
 
                     <form action={formAction} className="pt-4 border-b border-white/10">
@@ -66,7 +66,7 @@ const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
 
                     {state.initial && !isPending && (
                         <p className="px-3 pb-2 text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">
-                            Recommended Assets
+                            Rekomendasi Aset
                         </p>
                     )}
 
@@ -95,7 +95,7 @@ const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
                                     </div>
                                 </div>
                                 <div className="text-[9px] bg-zinc-900 border border-zinc-800 text-zinc-400 px-2 py-1 rounded font-black uppercase">
-                                    Rank #{coin.market_cap_rank || '??'}
+                                    Peringkat #{coin.market_cap_rank || '??'}
                                 </div>
                             </Link>
                         ))
@@ -104,7 +104,7 @@ const BottomBarSearch = ({ initialData = [] }: { initialData: any[] }) => {
                         <div className="py-20 text-center flex flex-col items-center gap-2">
                             <Search size={32} className="text-zinc-800" />
                             <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">
-                                {isPending ? 'Searching Blockchain...' : 'Signal Lost / Not Found'}
+                                {isPending ? 'Mencari...' : 'Data tidak di temukan'}
                             </p>
                         </div>
                     )}
