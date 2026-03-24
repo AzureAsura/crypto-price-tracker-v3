@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="min-h-screen text-white pt-24 md:pt-32 pb-20">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-4">
         
         <header className="mb-12 border-b border-white/10 pb-10">
           <div className="flex items-center gap-3 mb-6">

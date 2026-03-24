@@ -80,15 +80,15 @@ export const coinFunction = async (id: string, prevState: any, formData: FormDat
 
 export const getGlobalChat = async () => {
 
-    const session = await auth()
 
-    if (!session || !session.user) {
-        return null
-    }
 
     const coinId = 'global'
 
     try {
+
+        const session = await auth() 
+        if (!session?.user) return null
+
         const data = await prisma.chat.findMany({
             where: {
                 coinId

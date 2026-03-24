@@ -52,7 +52,7 @@ const CoinForm = ({ id, chatData, currentUserId }: { id: string, chatData: any[]
                     <div className="flex items-center gap-3">
                         <div>
                             <DialogTitle className="text-white text-base font-bold tracking-tight">
-                                Diskusi Koin
+                                Forum Diskusi
                             </DialogTitle>
                             <p className="text-[10px] text-white/40 italic">
                                 Bagikan pengalamanmu.

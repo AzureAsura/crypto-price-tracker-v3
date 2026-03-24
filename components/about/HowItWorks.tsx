@@ -1,0 +1,83 @@
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const HowItWorks = () => {
+  const steps = [
+    {
+      id: "01",
+      text: "Cari koin atau aset kripto yang ingin Anda pantau harganya secara real-time.",
+    },
+    {
+      id: "02",
+      text: "Masuk ke detail terminal untuk melihat grafik teknis dan sentimen pasar terbaru.",
+    },
+    {
+      id: "03",
+      text: "Atur notifikasi harga agar Anda tidak ketinggalan momentum bullish selanjutnya.",
+    },
+  ];
+
+  return (
+    <section className="relative py-24 px-4 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        className="flex-1 relative flex justify-center items-center"
+      >
+        <div className="absolute w-[300px] h-[300px] bg-blue-600/20 blur-[100px] rounded-full" />
+        
+        <motion.img 
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          src="https://static.vecteezy.com/system/resources/previews/008/822/064/large_2x/3d-design-bitcoin-cryptocurrency-white-background-free-png.png" 
+          alt="Illustration"
+          className="w-[80%] md:w-full max-w-[500px] object-contain relative z-10 drop-shadow-[0_0_50px_rgba(59,130,246,0.3)]"
+        />
+      </motion.div>
+
+      <div className="flex-1 flex flex-col gap-8 text-left">
+        <div className="flex items-center gap-2">
+          <span className="w-[1px] h-4 bg-white/20" />
+          <span className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-medium">
+            Cara Kerja Nirmala
+          </span>
+        </div>
+
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight"
+        >
+          Mulai pantau dengan beberapa klik
+        </motion.h2>
+
+        <div className="flex flex-col gap-8 mt-4">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className="flex items-center gap-6 group"
+            >
+              <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-[24px] bg-white/10 border border-white/5 flex items-center justify-center backdrop-blur-md group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
+                <span className="text-white font-bold text-lg">{step.id}</span>
+              </div>
+              
+              <p className="text-white/60 text-sm md:text-lg leading-relaxed max-w-[350px]">
+                {step.text}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+    </section>
+  );
+};
+
+export default HowItWorks;
