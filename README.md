@@ -8,7 +8,6 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-7-2D3748?style=flat-square&logo=prisma)](https://www.prisma.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 Platform crypto price tracker yang dikembangkan di Indonesia, memanfaatkan CoinGecko API secara efisien dengan hanya **30 request per menit**. Tampil dengan desain glassmorphism yang modern, ringan, dan dilengkapi fitur diskusi komunitas global.
 
