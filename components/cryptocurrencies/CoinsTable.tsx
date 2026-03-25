@@ -136,7 +136,7 @@ const CoinsTable = ({ initialData }: { initialData: any[] }) => {
 
 
 
-                                    <TableCell className="text-right text-white border-b border-white/10">
+                                    <TableCell className="text-right font-medium text-white border-b border-white/10">
                                         IDR {coin.market_cap.toLocaleString('id-ID')}
                                     </TableCell>
 

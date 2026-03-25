@@ -149,7 +149,7 @@ const NavLink = () => {
                                 </span>
                             </div>
                             <p className="relative text-[11.5px] text-gray-500 leading-relaxed group-hover/card:text-gray-400 transition-colors duration-200">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Pelajari dokumentasi API CoinGecko sebagai sumber data utama platform ini.
                             </p>
                         </Link>
                     </div>
