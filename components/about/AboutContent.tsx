@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 
 const AboutContent = () => {
   return (
-    <section className="relative py-20 px-4 md:px-0 w-full flex flex-col items-center text-center overflow-hidden">
-      
+    <section className="relative pt-20 pb-4 md:pb-16 px-4 md:px-0 w-full flex flex-col items-center text-center overflow-hidden">
+
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -24,8 +24,10 @@ const AboutContent = () => {
         transition={{ duration: 1 }}
         className="max-w-5xl"
       >
-        <p className="text-2xl  leading-[1.6] text-white/50 font-normal tracking-tight">
-          <span className="text-white font-bold">Nirmala Finance</span> adalah ekosistem keuangan modern masa depan, di mana Anda bisa memantau pasar kripto dengan data <span className="text-white font-bold italic">real-time</span> yang sangat akurat. Rasakan pengalaman <span className="text-white font-bold">analisis data</span> yang mendalam karena ini adalah revolusi sistem pelacakan aset digital saat ini. Cukup dengan platform kami, Anda dapat dengan mudah <span className="text-white font-bold">mengeksplorasi</span> pergerakan pasar yang Anda inginkan. Mari <span className="text-white font-bold">wujudkan</span> strategi trading Anda menjadi profit nyata dengan memantau lebih jauh ke bawah.
+        <p className="text-lg md:text-2xl leading-[1.6] text-white/50 font-normal tracking-tight">
+          <span className="text-white font-bold">Nirmala Finance</span> merupakan platform <span className="text-white font-bold italic">crypto price tracker</span> yang dikembangkan di Indonesia dengan memanfaatkan API dari <span className="text-white font-bold">CoinGecko</span>. Dengan efisiensi sistem yang hanya menggunakan <span className="text-white font-bold">30 request per menit</span>, kami menghadirkan pengalaman yang <span className="text-white font-bold">ringan</span>, <span className="text-white font-bold">responsif</span>, dan tetap <span className="text-white font-bold italic">real-time</span>.
+
+          Platform ini dirancang untuk memberikan <span className="text-white font-bold">kemudahan eksplorasi data</span>, dilengkapi dengan fitur <span className="text-white font-bold">diskusi koin</span> dan <span className="text-white font-bold">interaksi global</span>, sehingga Anda dapat memahami pergerakan pasar secara lebih mendalam. Bersama <span className="text-white font-bold">Nirmala Finance</span>, mari <span className="text-white font-bold">optimalkan strategi</span> dan ubah insight menjadi peluang nyata di dunia aset digital.
         </p>
       </motion.div>
 
@@ -34,14 +36,14 @@ const AboutContent = () => {
         transition={{ duration: 2, repeat: Infinity }}
         className="mt-16 text-white/30"
       >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="2" 
-          strokeLinecap="round" 
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
           strokeLinejoin="round"
         >
           <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />

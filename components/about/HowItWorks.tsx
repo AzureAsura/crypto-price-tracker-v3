@@ -7,20 +7,20 @@ const HowItWorks = () => {
   const steps = [
     {
       id: "01",
-      text: "Cari koin atau aset kripto yang ingin Anda pantau harganya secara real-time.",
+      text: "Pantau harga kripto secara langsung dengan data akurat dari CoinGecko, diperbarui secara efisien dan cepat.",
     },
     {
       id: "02",
-      text: "Masuk ke detail terminal untuk melihat grafik teknis dan sentimen pasar terbaru.",
+      text: "Analisis pergerakan pasar dengan data yang terstruktur, membantu Anda memahami tren dan peluang terbaik.",
     },
     {
       id: "03",
-      text: "Atur notifikasi harga agar Anda tidak ketinggalan momentum bullish selanjutnya.",
+      text: "Diskusikan koin favorit Anda dan ambil keputusan trading dengan insight dari komunitas global.",
     },
   ];
 
   return (
-    <section className="relative py-24 px-4 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+    <section className="relative pt-20 pb-4 md:pb-16 px-4 md:w-[85vw] mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
       
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
@@ -50,7 +50,7 @@ const HowItWorks = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight"
+          className="text-4xl md:text-6xl font-black text-white leading-tighter tracking-tight"
         >
           Mulai pantau dengan beberapa klik
         </motion.h2>
@@ -64,7 +64,7 @@ const HowItWorks = () => {
               transition={{ delay: index * 0.2 }}
               className="flex items-center gap-6 group"
             >
-              <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-[24px] bg-white/10 border border-white/5 flex items-center justify-center backdrop-blur-md group-hover:bg-blue-600/20 group-hover:border-blue-500/50 transition-all duration-300">
+              <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-[24px] card flex items-center justify-center backdrop-blur-md group-hover:bg-blue-600/20 transition-all duration-300">
                 <span className="text-white font-bold text-lg">{step.id}</span>
               </div>
               

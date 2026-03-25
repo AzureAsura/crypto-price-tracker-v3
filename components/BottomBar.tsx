@@ -54,11 +54,18 @@ const BottomBar = ({ coins = [] }: { coins: any[] }) => {
                             key={item.name}
                             href={item.href}
                             onClick={toggleMenu}
-                            className='text-5xl uppercase font-black tracking-[-0.05em] text-white'
+                            className='text-4xl uppercase font-black tracking-[-0.05em] text-white'
                         >
                             {item.name}
                         </Link>
                     ))}
+                    <Link
+                            href={'https://docs.coingecko.com/'}
+                            target='_blank'
+                            className='text-4xl uppercase font-black tracking-[-0.05em] text-white'
+                        >
+                            API Docs
+                        </Link>
                 </nav>
 
                 <div className='pt-8 border-t border-white/5 grid grid-cols-2 gap-8'>

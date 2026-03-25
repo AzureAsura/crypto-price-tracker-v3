@@ -23,7 +23,7 @@ const Hero = () => {
 
             <div className="relative z-20 text-center flex flex-col items-center px-4 md:px-0 md:w-[95vw] mx-auto">
                 <h1 className="text-7xl md:text-[120px] font-[900] tracking-tighter text-white leading-[0.9] mb-6">
-                    Nirmala Finance
+                    Kuasai Pasar Kripto
                 </h1>
 
                 <p className="text-white text-xl md:text-2xl font-medium max-w-2xl mx-auto mb-10 opacity-90">

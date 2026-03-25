@@ -139,6 +139,19 @@ const NavLink = () => {
                                 </p>
                             </Link>
                         ))}
+                        <Link href={'https://docs.coingecko.com/'} target="_blank" className={cardClass}>
+                            <div className={`absolute inset-0 bg-gradient-to-br from-rose-500/20 to-rose-500/10 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 rounded-xl`} />
+
+                            <div className="relative flex items-center gap-2">
+                                <span className={`h-1.5 w-1.5 rounded-full bg-rose-400 shrink-0`} />
+                                <span className="font-semibold text-sm text-white">
+                                    API Docs
+                                </span>
+                            </div>
+                            <p className="relative text-[11.5px] text-gray-500 leading-relaxed group-hover/card:text-gray-400 transition-colors duration-200">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            </p>
+                        </Link>
                     </div>
                 </DropdownMenuContent>
             </DropdownMenu>

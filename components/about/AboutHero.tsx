@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const AboutHero = () => {
     return (
-        <section className="relative min-h-[80vh] md:min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-24 px-0">
+        <section className="relative min-h-[50vh] md:min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-32 md:pt-24 px-4">
 
             <div className="relative w-full flex flex-col items-center">
 
@@ -14,7 +14,7 @@ const AboutHero = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-5xl md:text-[10vw] font-bold leading-[0.9] tracking-[-0.05em] text-white uppercase flex flex-col items-center"
+                        className="text-5xl md:text-[10vw] font-black leading-[0.8] tracking-tighter text-white uppercase flex flex-col items-center"
                     >
                         <span className="block w-full">NIRMALA</span>
                         <span className="block w-full">FINANCE</span>
@@ -27,10 +27,10 @@ const AboutHero = () => {
                     transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     className="relative md:w-full md:max-w-6xl aspect-[15/10] md:aspect-[21/9] mt-[-40px] md:mt-[-100px] rounded-tr-[40px] md:rounded-tr-[100px] rounded-bl-[40px] md:rounded-bl-[100px] overflow-hidden border border-white/10 shadow-2xl mx-auto"
                 >
-                    <div className="absolute inset-0 z-10 border-[2px] md:border-[8px] border-transparent rounded-[inherit] bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 opacity-60 pointer-events-none" />
+                   
 
                     <img
-                        src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=2000"
+                        src="/aboutabout.webp"
                         alt="Space Background"
                         className="w-full h-full object-cover scale-110 brightness-75"
                     />
