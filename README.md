@@ -148,17 +148,12 @@ npm run lint
 
 ---
 
-## 📄 Lisensi
-
-Didistribusikan di bawah lisensi **MIT**. Lihat [`LICENSE`](LICENSE) untuk informasi lebih lanjut.
-
----
 
 ## 🙏 Kredit
 
 - [CoinGecko API](https://www.coingecko.com/en/api) — Data harga kripto
 - [shadcn/ui](https://ui.shadcn.com/) — Komponen UI
-- [Lightweight Charts](https://tradingview.github.io/lightweight-charts/) — Chart harga
+- [Recharts](https://github.com/recharts/recharts) — Chart harga
 
 ---
 
