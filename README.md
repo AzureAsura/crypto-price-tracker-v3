@@ -12,8 +12,6 @@
 
 Platform crypto price tracker yang dikembangkan di Indonesia, memanfaatkan CoinGecko API secara efisien dengan hanya **30 request per menit**. Tampil dengan desain glassmorphism yang modern, ringan, dan dilengkapi fitur diskusi komunitas global.
 
-[Demo](#) · [Report Bug](#) · [Request Feature](#)
-
 </div>
 
 ---
