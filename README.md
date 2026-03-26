@@ -2,13 +2,13 @@
 
 ## 🏫 Institusi
 
-(IDB Bali)
+IDB Bali
 
 ## 👥 Anggota Tim
 
-* Ketua: (Made Paramasura)
-* Anggota 1: (I Made Ryan Pradnyana)
-* Anggota 2: (Naufal Putra Abidian)
+* Ketua: Made Paramasura
+* Anggota 1: I Made Ryan Pradnyana
+* Anggota 2: Naufal Putra Abidian
 
 ---
 
