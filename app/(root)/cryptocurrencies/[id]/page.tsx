@@ -1,26 +1,20 @@
+import { Suspense } from 'react'
 import { auth } from '@/auth'
-import CoinsData from '@/components/coinsbyid/CoinsData'
-import { getChatByCoinId } from '@/lib/actions/chat'
-import { getCoinById } from '@/lib/data'
+import CoinDetailSection from '@/components/coinsbyid/CoinDetailSection'
+import CoinDetailSkeleton from '@/components/skeletons/CoinDetailSkeleton'
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params
+  const session = await auth()
+  const currentUserId = session?.user?.id
 
-    const { id } = await params
-
-    const session = await auth()
-    const currentUserId = session?.user?.id
-
-    const [data, discussions] = await Promise.all([
-        getCoinById(id),
-        getChatByCoinId(id),
-      ])
-
-
-    return (
-        <div className=''>
-            <CoinsData data={data} coinId={id} chatData={discussions} currentUserId={currentUserId} />
-        </div >
-    )
+  return (
+    <div className="">
+      <Suspense fallback={<CoinDetailSkeleton />}>
+        <CoinDetailSection coinId={id} currentUserId={currentUserId} />
+      </Suspense>
+    </div>
+  )
 }
 
 export default Page

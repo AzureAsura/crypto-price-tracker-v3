@@ -1,14 +1,15 @@
-
+import { Suspense } from 'react'
 import { ChevronRight } from 'lucide-react'
-import ContentTable from './ContentTable';
 import { globalChat, exchanges } from '@/constants'
-import DemoChart from './DemoChart';
-import Link from 'next/link';
-import clsx from 'clsx';
+import Link from 'next/link'
+import MarketCapSection from './home/MarketCapSection'
+import TrendingSection from './home/TrendingSection'
+import MarketTableSection from './home/MarketTableSection'
+import MarketCapSkeleton from './skeletons/MarketCapSkeleton'
+import TrendingSkeleton from './skeletons/TrendingSkeleton'
+import MarketTableSkeleton from './skeletons/MarketTableSkeleton'
 
-const Content = ({ data, trendingCoins, coins }: any) => {
-
-
+const Content = () => {
   return (
     <div className=" min-h-screen text-white pb-16 md:pt-10">
       <div className="px-4 md:px-0 md:w-[95vw] mx-auto">
@@ -16,96 +17,33 @@ const Content = ({ data, trendingCoins, coins }: any) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
 
           <div className="md:col-span-4 flex flex-col gap-4">
+            <Suspense fallback={<MarketCapSkeleton />}>
+              <MarketCapSection />
+            </Suspense>
 
-            <div className="card p-6 rounded-xl">
-              <div className="flex justify-between items-center pb-4 border-b border-gray-600 mb-6">
-                <h2 className="text-xl font-black text-white tracking-tight uppercase">
-                  Kapitalisasi Pasar
-                </h2>
-              </div>
-
-              <DemoChart data={data.sparkline_in_7d.price} />
-
-              <div className="flex justify-between items-end mt-2 px-1">
-                <div className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">
-                  PERFORMA 7 HARI
-                </div>
-
-                <div className={clsx(
-                  "text-xs font-bold",
-                  data.price_change_percentage_7d_in_currency >= 0 ? "text-green-500" : "text-red-500"
-                )}>
-                  {data.price_change_percentage_7d_in_currency >= 0 ? '+' : ''}
-                  {data.price_change_percentage_7d_in_currency?.toFixed(2)}%
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-xl card flex-grow flex flex-col">
-              <div className="flex justify-between items-center pb-4 border-b border-gray-600 ">
-                <h2 className="text-xl font-black text-white tracking-tight uppercase">
-                  Sedang tren
-                </h2>
-              </div>
-
-              <div className="space-y-2 flex-grow py-3">
-                {trendingCoins?.slice(0, 5).map((item: any, idx: number) => {
-                  const isDown = item.price_change_percentage_24h < 0;
-
-                  return (
-                    < Link
-                      href={`/cryptocurrencies/${item.id}`}
-                      key={item.id || idx}
-                      className="flex justify-between items-center group cursor-pointer hover:bg-white/5 p-2 rounded-lg transition-all"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-1 h-5 rounded-full ${isDown ? 'bg-red-500' : 'bg-green-500'}`} />
-                        <div>
-                          <div className="text-white font-bold text-sm">{item.name}</div>
-                          <div className="text-[10px] text-gray-500 uppercase">{item.symbol}</div>
-                        </div>
-                      </div>
-
-                      <div className="text-right">
-                        <div className="text-white text-sm font-bold">
-                          IDR {item.current_price?.toLocaleString('id-ID')}
-                        </div>
-                        <div className={`text-[10px] font-bold ${isDown ? 'text-red-500' : 'text-green-500'}`}>
-                          {isDown ? '▼' : '▲'} {Math.abs(item.price_change_percentage_24h).toFixed(2)}%
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <Link href={'/trending'} className="w-full py-3 rounded-xl border border-gray-600 text-white font-bold text-sm btn-color btn-color:hover transition-colors text-center uppercase">
-                selengkapnya
-              </Link>
-            </div>
-
+            <Suspense fallback={<TrendingSkeleton />}>
+              <TrendingSection />
+            </Suspense>
           </div>
 
           <div className="md:col-span-8">
-            <div className="rounded-xl card overflow-hidden shadow-sm h-full flex flex-col">
-
-              <div className="px-6 py-4 flex justify-between items-center border-b border-gray-600">
-                <h3 className="text-white font-black text-xl uppercase tracking-tight">Ringkasan Pasar</h3>
-                <Link href={'/cryptocurrencies'} className="group flex items-center gap-2 text-[11px] font-bold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all">
-                  LIHAT SEMUA COIN <ChevronRight size={15} />
-                </Link>
+            <Suspense fallback={
+              <div className="rounded-xl card overflow-hidden shadow-sm h-full flex flex-col">
+                <div className="px-6 py-4 flex justify-between items-center border-b border-gray-600">
+                  <div className="h-5 w-40 bg-white/10 animate-pulse rounded" />
+                  <div className="h-8 w-32 bg-white/5 animate-pulse rounded-lg" />
+                </div>
+                <MarketTableSkeleton />
               </div>
-
-              <ContentTable coins={coins} />
-            </div>
+            }>
+              <MarketTableSection />
+            </Suspense>
           </div>
 
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 mt-4 items-stretch'>
           <div className="lg:col-span-7">
-
-
             <div className="p-6 rounded-2xl card h-full flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-center pb-4 border-b-gray-600 border-b mb-4">
@@ -135,7 +73,6 @@ const Content = ({ data, trendingCoins, coins }: any) => {
                   ))}
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -145,7 +82,6 @@ const Content = ({ data, trendingCoins, coins }: any) => {
                 <h2 className="text-xl font-black text-white mb-4 pb-4 border-gray-600 border-b tracking-tight">
                   Diskusi Koin
                 </h2>
-
 
                 <div className="space-y-6">
                   {globalChat?.map((item: any, index: number) => (
@@ -182,11 +118,9 @@ const Content = ({ data, trendingCoins, coins }: any) => {
 
         </div>
 
-
       </div>
     </div>
   )
 }
-
 
 export default Content

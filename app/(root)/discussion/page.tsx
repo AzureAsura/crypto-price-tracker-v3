@@ -1,11 +1,9 @@
-import { Send, MessageSquare, User, MoreVertical } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import GlobalForm from '@/components/form/GlobalForm'
-import { getGlobalChat } from '@/lib/actions/chat'
+import { Suspense } from 'react'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
-import GlobalChatList from '@/components/chat/GlobalChatList'
+import GlobalForm from '@/components/form/GlobalForm'
+import DiscussionSection from '@/components/chat/DiscussionSection'
+import DiscussionSkeleton from '@/components/skeletons/DiscussionSkeleton'
 
 const page = async () => {
   const session = await auth()
@@ -15,9 +13,6 @@ const page = async () => {
   }
 
   const currentUserId = session?.user?.id
-
-  const data = await getGlobalChat()
-
 
   return (
     <div className="h-[calc(100vh-120px)] pb-20 md:pb-0 mt-24 w-full px-3 md:px-0 md:w-[95vw] mx-auto">
@@ -36,7 +31,9 @@ const page = async () => {
         </div>
 
         <div className="flex-1 overflow-hidden">
-          <GlobalChatList data={data} currentUserId={currentUserId} />
+          <Suspense fallback={<DiscussionSkeleton />}>
+            <DiscussionSection currentUserId={currentUserId} />
+          </Suspense>
         </div>
 
         <GlobalForm />
