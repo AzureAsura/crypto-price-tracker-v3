@@ -1,31 +1,21 @@
-import { auth } from '@/auth'
-import BottomBar from '@/components/BottomBar'
+import { Suspense } from 'react'
+import BottomBarServer from '@/components/BottomBarServer'
+import BottomBarSkeleton from '@/components/skeletons/BottomBarSkeleton'
 import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
-import { getProfile } from '@/lib/actions/profile'
-import { getCoins } from '@/lib/data'
+import NavbarServer from '@/components/NavbarServer'
+import NavbarSkeleton from '@/components/skeletons/NavbarSkeleton'
 import React from 'react'
 
-const layout = async ({ children }: { children: React.ReactNode }) => {
-
-  const [coins, session] = await Promise.all([
-    getCoins(),
-    auth()
-  ])
-
-  let userData = null
-
-  if (session) {
-    userData = await getProfile(session?.user.id)
-
-  }
-
-
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Navbar coins={coins} userData={userData as any} />
+      <Suspense fallback={<NavbarSkeleton />}>
+        <NavbarServer />
+      </Suspense>
       {children}
-      <BottomBar coins={coins} />
+      <Suspense fallback={<BottomBarSkeleton />}>
+        <BottomBarServer />
+      </Suspense>
       <Footer />
     </div>
   )
